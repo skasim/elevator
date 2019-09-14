@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class FileUtils {
 
+    // This method can probably be removed
     public static void readWriteFile(String inFilepath, String outFilepath) {
         BufferedReader reader;
         File inFile = new File(inFilepath);
@@ -23,6 +24,7 @@ public class FileUtils {
         }
     }
     // This is the method that can changed depending on what you need done
+    // This method can probably be removed
     private static void readWriteLine(BufferedReader reader, File outFile) {
         String line;
         BufferedWriter writer = createWriter(outFile);
