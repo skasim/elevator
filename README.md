@@ -1,0 +1,2 @@
+To compile the program run `javac $(find . -name '*.java')` from above `src` in the project directory structure.
+To run the program, cd to `src` and run `java com.sk.elevator.Elevator ../input/elevator_input_data.txt ../output/out_file.txt`
