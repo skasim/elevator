@@ -74,7 +74,6 @@ public class FileUtils {
                     throw new NotValidInputException("[" + c + "] is not valid input.");
                 } else if (c==' ' || c=='\t') {
                     // account for spaces or tabs
-                    break;
                 }
                 else if ((c=='1' || c =='2' || c =='3' || c=='4' || c=='5') && intCount==0) {
                     intCount++;
@@ -92,7 +91,6 @@ public class FileUtils {
             }
         }
 //        System.out.println("name=" + name);
-        System.out.println("****");
         person.setName(name);
         System.out.println(person.toString());
         return person;

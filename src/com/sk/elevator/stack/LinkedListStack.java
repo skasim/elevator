@@ -23,16 +23,16 @@ public class LinkedListStack {
         this.size++;
     }
 
-    public SNode pop() {
+    public Person pop() {
         SNode temp = this.top;
         this.top = this.top.next;
         temp.next = null;
         this.size--;
-        return temp;
+        return temp.data;
     }
 
     public boolean isEmpty() {
-        return (top.next == null);
+        return (this.size == 0);
     }
 
     public Person peek() {
@@ -41,6 +41,10 @@ public class LinkedListStack {
 
     public int size() {
         return this.size;
+    }
+
+    public boolean maxCapacityReached() {
+        return  (this.size > 5);
     }
 
     // TODO Delete this
