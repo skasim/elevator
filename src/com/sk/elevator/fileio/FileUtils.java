@@ -1,5 +1,8 @@
 package com.sk.elevator.fileio;
 
+import com.sk.elevator.exceptions.NotValidInputException;
+import com.sk.elevator.person.Person;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,10 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class FileUtils {
 
-    // This method can probably be removed
+    // TODO This method can probably be removed
     public static void readWriteFile(String inFilepath, String outFilepath) {
         BufferedReader reader;
         File inFile = new File(inFilepath);
@@ -23,6 +27,77 @@ public class FileUtils {
             System.err.println(e.toString());
         }
     }
+
+    // TODO Remove this as well
+    public static void scanFile(String inFilepath) {
+        try {
+            Scanner scanner = new Scanner(new File(inFilepath));
+            while(scanner.hasNextLine()) {
+
+                String line = scanner.nextLine();
+                System.out.println(line);
+                Person person = new Person();
+                parseLineToCreatePerson(line, person);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int convertCharToInt(char c) {
+        if (c == '1') {
+            return 1;
+        }
+        else if (c == '2') {
+            return 2;
+        }
+        else if (c == '3') {
+            return 3;
+        }
+        else if (c == '4') {
+            return 4;
+        }
+        else if (c == '5') {
+            return 5;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    public static Person parseLineToCreatePerson(String line, Person person) {
+        int intCount = 0;
+        String name = "";
+        for (char c : line.toCharArray()) {
+            try {
+                if (c=='/') {
+                    throw new NotValidInputException("[" + c + "] is not valid input.");
+                } else if (c==' ' || c=='\t') {
+                    // account for spaces or tabs
+                    break;
+                }
+                else if ((c=='1' || c =='2' || c =='3' || c=='4' || c=='5') && intCount==0) {
+                    intCount++;
+//                    System.out.println("entry floor=" + convertCharToInt(c));
+                    person.setEntryFloor(convertCharToInt(c));
+                } else if ((c=='1' || c =='2' || c =='3' || c=='4' || c=='5') && intCount==1) {
+//                    System.out.println("exit floor=" + convertCharToInt(c));
+                    person.setExitFloor(convertCharToInt(c));
+                } else {
+                    name = name + c;
+                }
+            } catch(NotValidInputException e) {
+                System.err.println(e);
+                return null;
+            }
+        }
+//        System.out.println("name=" + name);
+        System.out.println("****");
+        person.setName(name);
+        System.out.println(person.toString());
+        return person;
+    }
+
     // This is the method that can changed depending on what you need done
     // This method can probably be removed
     private static void readWriteLine(BufferedReader reader, File outFile) {

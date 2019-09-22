@@ -15,6 +15,9 @@ public class Person {
         this.exitFloor = exitFloor;
         this.exitTracker = 0;
     }
+    public String getName() {
+        return name;
+    }
 
     public int getEntryFloor() {
         return entryFloor;
@@ -26,6 +29,10 @@ public class Person {
 
     public int getExitTracker() {
         return exitTracker;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setEntryFloor(int entryFloor) {
