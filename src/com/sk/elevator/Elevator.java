@@ -40,10 +40,15 @@ public class Elevator {
 
         try {
             Scanner scanner = new Scanner(new File(inFilepath));
+            BufferedWriter writer = FileUtils.createWriter(new File(outFilepath));
             LinkedListStack elevator = new LinkedListStack();
             Button button = new Button();
             ElevatorMetrics eMetrics = new ElevatorMetrics();
-
+            try {
+                FileUtils.writeFileLineByLine(new File(outFilepath), "Begin Elevator Simulation.\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             while(scanner.hasNextLine()) {
 
                 String line = scanner.nextLine();
@@ -58,9 +63,15 @@ public class Elevator {
 
                         if (elevator.maxCapacityReached()) {
                             System.out.println("wont be getting on bc of max capacity= " + person.getName());
+                            try {
+                                FileUtils.writeFileLineByLine(new File(outFilepath), "Elevator at max capacity! [" + person.getName() + "] was not able to get on at floor [" + button.getCurrentFloor() +"]");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
                             eMetrics.setTotalTurnaways(eMetrics.getTotalTurnaways() + 1);
                         } else {
-                            ElevatorUtils.loadPerson(person, elevator, button, eMetrics);
+                            ElevatorUtils.loadPerson(person, elevator, button, eMetrics, outFilepath);
                         }
 
                     } else {
@@ -71,7 +82,7 @@ public class Elevator {
                             LinkedListStack auxStack = new LinkedListStack();
                             // TODO could do an if statement here to check if there is anybody on this floor
                             if (!elevator.isEmpty()) {
-                                ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
+                                ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button, writer, outFilepath);
                             } else {
                                 System.out.println("elev be empty yo");
                                 eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
@@ -83,17 +94,22 @@ public class Elevator {
                         }
                         LinkedListStack auxStack = new LinkedListStack();
                         if (!elevator.isEmpty()) {
-                            ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
+                            ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button, writer, outFilepath);
                         } else {
                             System.out.println("elev be empty");
                             eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
                         }
 //                    button.zeroOutButtonForFloor(button.getCurrentFloor());
                         if (elevator.maxCapacityReached()) {
+                            try {
+                                FileUtils.writeFileLineByLine(new File(outFilepath), "Elevator at max capacity! [" + person.getName() + "] was not able to get on at floor [" + button.getCurrentFloor() +"]");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             eMetrics.setTotalTurnaways(eMetrics.getTotalTurnaways() + 1);
                             System.out.println("wont be getting on bc of max capacity2= " + person.getName());
                         } else {
-                            ElevatorUtils.loadPerson(person, elevator, button, eMetrics);
+                            ElevatorUtils.loadPerson(person, elevator, button, eMetrics, outFilepath);
                             System.out.println("ELEV DISPLAY!!!!!");
                             elevator.display();
                             System.out.println(button.isGoingUp());
@@ -104,22 +120,22 @@ public class Elevator {
             }
 
             // gotta get rid of sue
-            ElevatorUtils.finalUnload(elevator, button);
+            ElevatorUtils.finalUnload(elevator, button, writer, outFilepath);
 
             System.out.println("Ending Elevator Simulation.");
+            try {
+                FileUtils.writeFileLineByLine(new File(outFilepath), "\nEnd Elevator Simulation.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println(eMetrics.toString());
-            BufferedWriter writer = FileUtils.createWriter(new File(outFilepath));
 
             try {
-                FileUtils.writeFileLineByLine(writer, eMetrics.toString());
+                FileUtils.writeFileLineByLine(new File(outFilepath), eMetrics.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
             scanner.close();
-//            writer.close();
-//            FileUtils.givenWritingStringToFile_whenUsingPrintWriter_thenCorrect(new File(outFilepath));
-//            FileUtils.whenWriteStringUsingBufferedWritter_thenCorrect(new File(outFilepath));
-//            FileUtils.whenAppendStringUsingBufferedWritter_thenOldContentShouldExistToo(new File("./blahtext99.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

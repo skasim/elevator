@@ -105,7 +105,7 @@ public class FileUtils {
         try {
             while ((line=reader.readLine()) != null) {
                 System.out.println(line);
-                writeFileLineByLine(writer, line);
+                writeFileLineByLine(outFile, line);
             }
             writer.close();
         } catch (IOException e) {
@@ -124,33 +124,6 @@ public class FileUtils {
 
     }
 
-    public static void whenAppendStringUsingBufferedWritter_thenOldContentShouldExistToo(File file)
-            throws IOException {
-        String str = "World";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-        writer.append(' ');
-        writer.append(str);
-
-        writer.close();
-    }
-
-    public static void givenWritingStringToFile_whenUsingPrintWriter_thenCorrect(File file)
-            throws IOException {
-        FileWriter fileWriter = new FileWriter(file);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.print("Some String");
-        printWriter.printf("Product name is %s and its price is %d $", "iPhone", 1000);
-        printWriter.close();
-    }
-
-    public static  void whenWriteStringUsingBufferedWritter_thenCorrect(File file)
-            throws IOException {
-        String str = "Hello";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        writer.write(str);
-
-        writer.close();
-    }
 
     public static BufferedReader createReader(File inFile) {
         BufferedReader reader = null;
@@ -162,7 +135,20 @@ public class FileUtils {
         return reader;
     }
 
-    public static void writeFileLineByLine(BufferedWriter writer, String line) throws IOException {
+//    public static void writeFileLineByLine(BufferedWriter writer, String line) throws IOException {
+//        try {
+//            writer.newLine();
+//            if (line != null) {
+//                writer.write(line);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        writer.close();
+//    }
+
+    public static void writeFileLineByLine(File outFile, String line) throws IOException {
+        BufferedWriter writer = createWriter(outFile);
         try {
             writer.newLine();
             if (line != null) {
