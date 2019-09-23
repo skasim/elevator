@@ -36,16 +36,6 @@ public class Elevator {
         String inFilepath = args[0];
         String outFilepath = args[1];
 
-//        Button button = new Button();
-//        button.pushFloorRequestedButton(3);
-//        button.pushFloorRequestedButton(4);
-//        button.pushFloorRequestedButton(1);
-//        button.pushFloorRequestedButton(3);
-//        System.out.println(button.toString());
-//        System.out.println("***");
-//        button.setCurrentFloor(4);
-//        System.out.println(button.determineNextFloor(3));
-
 
         try {
             Scanner scanner = new Scanner(new File(inFilepath));
@@ -60,45 +50,47 @@ public class Elevator {
                 person = parseLineToCreatePerson(line, person);  // TODO this is where junk gets processed
 
 
-                if (button.getCurrentFloor() == person.getEntryFloor()) {
+                if (person != null) {
+                    if (button.getCurrentFloor() == person.getEntryFloor()) {
 
-                    if (elevator.maxCapacityReached()) {
-                        System.out.println("wont be getting on bc of max capacity= " + person.getName());
-                    } else {
-                        ElevatorUtils.loadPerson(person, elevator, button);
-                    }
-
-                } else {
-                    button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
-                    elevator.display();
-                    System.out.println("next floor=" + button.getCurrentFloor());
-                    while(person.getEntryFloor() != button.getCurrentFloor()) {
-                        LinkedListStack auxStack = new LinkedListStack();
-                        // TODO could do an if statement here to check if there is anybody on this floor
-                        if (!elevator.isEmpty()) {
-                            ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
+                        if (elevator.maxCapacityReached()) {
+                            System.out.println("wont be getting on bc of max capacity= " + person.getName());
                         } else {
-                            System.out.println("elev be empty yo");
+                            ElevatorUtils.loadPerson(person, elevator, button);
                         }
-//                        button.zeroOutButtonForFloor(button.getCurrentFloor());
+
+                    } else {
                         button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
                         elevator.display();
                         System.out.println("next floor=" + button.getCurrentFloor());
-                    }
-                    LinkedListStack auxStack = new LinkedListStack();
-                    if (!elevator.isEmpty()) {
-                        ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
-                    } else {
-                        System.out.println("elev be empty");
-                    }
+                        while(person.getEntryFloor() != button.getCurrentFloor()) {
+                            LinkedListStack auxStack = new LinkedListStack();
+                            // TODO could do an if statement here to check if there is anybody on this floor
+                            if (!elevator.isEmpty()) {
+                                ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
+                            } else {
+                                System.out.println("elev be empty yo");
+                            }
+//                        button.zeroOutButtonForFloor(button.getCurrentFloor());
+                            button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
+                            elevator.display();
+                            System.out.println("next floor=" + button.getCurrentFloor());
+                        }
+                        LinkedListStack auxStack = new LinkedListStack();
+                        if (!elevator.isEmpty()) {
+                            ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
+                        } else {
+                            System.out.println("elev be empty");
+                        }
 //                    button.zeroOutButtonForFloor(button.getCurrentFloor());
-                    if (elevator.maxCapacityReached()) {
-                        System.out.println("wont be getting on bc of max capacity2= " + person.getName());
-                    } else {
-                        ElevatorUtils.loadPerson(person, elevator, button);
-                        System.out.println("ELEV DISPLAY!!!!!");
-                        elevator.display();
-                        System.out.println(button.isGoingUp());
+                        if (elevator.maxCapacityReached()) {
+                            System.out.println("wont be getting on bc of max capacity2= " + person.getName());
+                        } else {
+                            ElevatorUtils.loadPerson(person, elevator, button);
+                            System.out.println("ELEV DISPLAY!!!!!");
+                            elevator.display();
+                            System.out.println(button.isGoingUp());
+                        }
                     }
                 }
 
@@ -106,6 +98,8 @@ public class Elevator {
 
             // gotta get rid of sue
             ElevatorUtils.finalUnload(elevator, button);
+
+            System.out.println("Ending Elevator Simulation.");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
