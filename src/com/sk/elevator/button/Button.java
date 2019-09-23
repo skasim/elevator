@@ -9,8 +9,9 @@ public class Button {
     private int fl5;
     private boolean goingUp;
     private int currentFloor;
-    private int lowestFloor;
-    private int highestFloor;
+    private int maxFloor;
+//    private int lowestFloor;
+//    private int highestFloor;
 
     public Button() {
         this.fl1 = 0;
@@ -20,8 +21,9 @@ public class Button {
         this.fl5 = 0;
         this.goingUp = true;
         this.currentFloor = 1;
-        this.lowestFloor = 5;
-        this.highestFloor = 1;
+        this.maxFloor = currentFloor;
+//        this.lowestFloor = 5;
+//        this.highestFloor = 1;
     }
 
     public void zeroOutButtonForFloor(int floor) {
@@ -65,19 +67,16 @@ public class Button {
 
     public String toString() {
         return (" Fl1:" + fl1 + "\n Fl2:" + fl2 + "\n Fl3:" + fl3 + "\n Fl4:" + fl4 + "\n Fl5:" + fl5 +
-                "\n Going up:" + goingUp + "\n Current Floor:" + currentFloor + "\n Lowest Floor:" + lowestFloor +
-                "\n Highest Floor:" + highestFloor);
+                "\n Going up:" + goingUp + "\n Current Floor:" + currentFloor);
     }
 
     // TODO could be made private
-    public void calculateHighestLowestFloors(int floorRequested) {
+    public int calculateMaxFloorForFinalUnload(int floorInStack) {
 
-        if (floorRequested > this.highestFloor) {
-            this.highestFloor = floorRequested;
+        if (floorInStack > maxFloor) {
+            maxFloor = floorInStack;
         }
-        if (floorRequested < this.lowestFloor) {
-            this.lowestFloor = floorRequested;
-        }
+        return maxFloor;
     }
 
 //    // TODO you have not solved problem of ascending or descending
@@ -116,7 +115,7 @@ public class Button {
             if (goingUp) {
                 nextFloor++;
                 if (nextFloor == 5) goingUp = false;
-                if(returnFloorRequests(nextFloor) == 0 && nextFloor != nextPersonEntryFloor) {
+                if(returnNumberOfFloorRequests(nextFloor) == 0 && nextFloor != nextPersonEntryFloor) {
 //                    nextFloor = (goingUp) ? nextFloor + 1 : nextFloor - 1; //TODO clean up
                 } else {
                     if (nextFloor != currentFloor) {
@@ -126,7 +125,7 @@ public class Button {
             } else {
                 nextFloor--;
                 if (nextFloor == 1) goingUp = true;
-                if (returnFloorRequests(nextFloor) == 0 && nextFloor != nextPersonEntryFloor) {
+                if (returnNumberOfFloorRequests(nextFloor) == 0 && nextFloor != nextPersonEntryFloor) {
 //                    nextFloor = (goingUp) ? nextFloor + 1 : nextFloor - 1; // TODO clean up
                 }
                 else {
@@ -142,7 +141,7 @@ public class Button {
     }
 
     // TODO fix this case statement's return
-    public int returnFloorRequests(int floor) {
+    public int returnNumberOfFloorRequests(int floor) {
         switch(floor) {
             case 1:
                 return getFl1();
@@ -188,12 +187,12 @@ public class Button {
         return currentFloor;
     }
 
-    public int getLowestFloor() {
-        return lowestFloor;
-    }
+//    public int getLowestFloor() {
+//        return lowestFloor;
+//    }
 
-    public int getHighestFloor() {
-        return highestFloor;
+    public int getMaxFloor() {
+        return maxFloor;
     }
 
     public void setFl1(int fl1) {
@@ -224,11 +223,11 @@ public class Button {
         this.currentFloor = currentFloor;
     }
 
-    public void setLowestFloor(int lowestFloor) {
-        this.lowestFloor = lowestFloor;
-    }
+//    public void setLowestFloor(int lowestFloor) {
+//        this.lowestFloor = lowestFloor;
+//    }
 
-    public void setHighestFloor(int highestFloor) {
-        this.highestFloor = highestFloor;
+    public void setMaxFloor(int maxFloor) {
+        this.maxFloor = maxFloor;
     }
 }

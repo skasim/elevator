@@ -14,17 +14,60 @@ public class ElevatorUtils {
         // TODO print name of person getting on plus floor
     }
 
+    public static void finalUnload(LinkedListStack elevator, Button button) {
+        if (!elevator.isEmpty()) {
+            LinkedListStack auxStack = new LinkedListStack();
+
+            while(!elevator.isEmpty()) {
+                Person tmpPerson = elevator.pop();
+                button.calculateMaxFloorForFinalUnload(tmpPerson.getExitFloor());
+                auxStack.push(tmpPerson);
+            }
+
+            while(!auxStack.isEmpty()) {
+                Person tmpPerson = auxStack.pop();
+                elevator.push(tmpPerson);
+            }
+
+            while(button.getMaxFloor() > button.getCurrentFloor() && !elevator.isEmpty()) {
+                LinkedListStack tmpStack = new LinkedListStack();
+                button.setCurrentFloor(button.getCurrentFloor()+1);
+                if (button.returnNumberOfFloorRequests(button.getCurrentFloor()) > 0) {
+                    unloadPeople(button.getCurrentFloor(), tmpStack, elevator, button);
+                }
+            }
+            // now we are at max floor, so we should go down
+            while (button.getCurrentFloor() !=1 || !elevator.isEmpty()) {
+                LinkedListStack tmpStack = new LinkedListStack();
+                button.setCurrentFloor(button.getCurrentFloor()-1);
+                if (button.returnNumberOfFloorRequests(button.getCurrentFloor()) > 0) {
+                    unloadPeople(button.getCurrentFloor(), tmpStack, elevator, button);
+                }
+
+            }
+
+
+        }
+        System.out.println("current floor=" + button.getCurrentFloor());
+
+        System.out.println("max floor=" + button.getMaxFloor());
+        elevator.display();
+
+    }
+
     public static void unloadPeople(int currentFloor, LinkedListStack auxStack, LinkedListStack elevator,
                                     Button button) {
-        int numOfPeopleToUnload = button.returnFloorRequests(currentFloor);
+        int numOfPeopleToUnload = button.returnNumberOfFloorRequests(currentFloor);
 
-        for (int i=0; i<numOfPeopleToUnload; i++) {
+        int i = 0;
+        while (i < numOfPeopleToUnload) {
             System.out.println(button.toString());
             System.out.println("numOfppltounload=" + numOfPeopleToUnload);
             System.out.println("ELEVATOR SIZE="+elevator.size());
             Person person = elevator.pop();
             if (person.getExitFloor() == currentFloor) {
-                System.out.println("OUTTA HERE");
+                System.out.println("OUTTA HERE=" + person.toString());
+                i++;
                 // TODO add a print out to document
             } else {
                 person.setExitTracker(person.getExitTracker()+1);
@@ -33,6 +76,7 @@ public class ElevatorUtils {
                 // TODO write this out to document
             }
         }
+        button.zeroOutButtonForFloor(currentFloor);
         reloadPeople(auxStack, elevator);
     }
 
