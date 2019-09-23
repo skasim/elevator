@@ -45,7 +45,7 @@ public class FileUtils {
         }
     }
 
-    private static int convertCharToInt(char c) {
+    public static int convertCharToInt(char c) {
         if (c == '1') {
             return 1;
         }
