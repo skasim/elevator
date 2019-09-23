@@ -1,5 +1,7 @@
 package com.sk.elevator.button;
 
+import com.sk.elevator.metrics.ElevatorMetrics;
+
 public class Button {
 
     private int fl1;
@@ -45,23 +47,29 @@ public class Button {
         }
     }
 
-    public void pushFloorRequestedButton(int floorRequested) {
+    public void pushFloorRequestedButton(int floorRequested, ElevatorMetrics eMetrics) {
 //        calculateHighestLowestFloors(floorRequested); TODO clean up
         switch(floorRequested) {
             case 1:
                 this.fl1++;
+                eMetrics.setFl1ReqTracker(eMetrics.getFl1ReqTracker() + 1);
                 break;
             case 2:
                 this.fl2++;
+                eMetrics.setFl2ReqTracker(eMetrics.getFl2ReqTracker() + 1);
                 break;
             case 3:
                 this.fl3++;
+                eMetrics.setFl3ReqTracker(eMetrics.getFl3ReqTracker() + 1);
                 break;
             case 4:
                 this.fl4++;
+                eMetrics.setFl4ReqTracker(eMetrics.getFl4ReqTracker() + 1);
                 break;
             case 5:
                 this.fl5++;
+                eMetrics.setFl5ReqTracker(eMetrics.getFl5ReqTracker() + 1);
+                break;
         }
     }
 

@@ -3,6 +3,7 @@ package com.sk.elevator;
 import com.sk.elevator.button.Button;
 import com.sk.elevator.elevatorio.ElevatorUtils;
 import com.sk.elevator.fileio.FileUtils;
+import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.person.Person;
 import com.sk.elevator.stack.LinkedListStack;
 
@@ -41,6 +42,7 @@ public class Elevator {
             Scanner scanner = new Scanner(new File(inFilepath));
             LinkedListStack elevator = new LinkedListStack();
             Button button = new Button();
+            ElevatorMetrics eMetrics = new ElevatorMetrics();
 
             while(scanner.hasNextLine()) {
 
@@ -49,14 +51,16 @@ public class Elevator {
                 Person person = new Person();
                 person = parseLineToCreatePerson(line, person);  // TODO this is where junk gets processed
 
-
+                // TODO buff read here instead
                 if (person != null) {
+                    eMetrics.setTotalPeopleWhoWantedToRideElevator(eMetrics.getTotalPeopleWhoWantedToRideElevator() + 1);
                     if (button.getCurrentFloor() == person.getEntryFloor()) {
 
                         if (elevator.maxCapacityReached()) {
                             System.out.println("wont be getting on bc of max capacity= " + person.getName());
+                            eMetrics.setTotalTurnaways(eMetrics.getTotalTurnaways() + 1);
                         } else {
-                            ElevatorUtils.loadPerson(person, elevator, button);
+                            ElevatorUtils.loadPerson(person, elevator, button, eMetrics);
                         }
 
                     } else {
@@ -70,6 +74,7 @@ public class Elevator {
                                 ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
                             } else {
                                 System.out.println("elev be empty yo");
+                                eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
                             }
 //                        button.zeroOutButtonForFloor(button.getCurrentFloor());
                             button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
@@ -81,18 +86,20 @@ public class Elevator {
                             ElevatorUtils.unloadPeople(button.getCurrentFloor(), auxStack, elevator, button);
                         } else {
                             System.out.println("elev be empty");
+                            eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
                         }
 //                    button.zeroOutButtonForFloor(button.getCurrentFloor());
                         if (elevator.maxCapacityReached()) {
+                            eMetrics.setTotalTurnaways(eMetrics.getTotalTurnaways() + 1);
                             System.out.println("wont be getting on bc of max capacity2= " + person.getName());
                         } else {
-                            ElevatorUtils.loadPerson(person, elevator, button);
+                            ElevatorUtils.loadPerson(person, elevator, button, eMetrics);
                             System.out.println("ELEV DISPLAY!!!!!");
                             elevator.display();
                             System.out.println(button.isGoingUp());
                         }
                     }
-                }
+                } // TODO EO of buff reader
 
             }
 
@@ -100,12 +107,24 @@ public class Elevator {
             ElevatorUtils.finalUnload(elevator, button);
 
             System.out.println("Ending Elevator Simulation.");
+            System.out.println(eMetrics.toString());
+            BufferedWriter writer = FileUtils.createWriter(new File(outFilepath));
 
+            try {
+                FileUtils.writeFileLineByLine(writer, eMetrics.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            scanner.close();
+//            writer.close();
+//            FileUtils.givenWritingStringToFile_whenUsingPrintWriter_thenCorrect(new File(outFilepath));
+//            FileUtils.whenWriteStringUsingBufferedWritter_thenCorrect(new File(outFilepath));
+//            FileUtils.whenAppendStringUsingBufferedWritter_thenOldContentShouldExistToo(new File("./blahtext99.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
 
 
     }

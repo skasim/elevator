@@ -8,11 +8,10 @@ public class ElevatorMetrics {
     int fl4ReqTracker;
     int fl5ReqTracker;
 
-    int totalRequests;
-    int totalPeopleRidingElevator;
+    int totalPeopleWhoWantedToRideElevator;
+    int totalPeopleWhoRodeElevator;
     int totalTurnaways;
     int totalEmptyElevator;
-    int totalNumberOfStops;
 
     public ElevatorMetrics() {
         this.fl1ReqTracker = 0;
@@ -21,11 +20,22 @@ public class ElevatorMetrics {
         this.fl4ReqTracker = 0;
         this.fl5ReqTracker = 0;
 
-        this.totalRequests = 0;
-        this.totalPeopleRidingElevator = 0;
+        this.totalPeopleWhoWantedToRideElevator = 0;
+        this.totalPeopleWhoRodeElevator = 0;
         this.totalTurnaways = 0;
         this.totalEmptyElevator= 0;
-        this.totalNumberOfStops= 0;
+    }
+
+    //TODO if have time
+//    public int calculateMostRequestedFloor() {
+//
+//    }
+
+    public String toString() { //TODO clean up the overflow
+        return ("ELEVATOR METRICS REPORT \n Fl1 Req:" + fl1ReqTracker + "\n Fl2 Req:" + fl2ReqTracker + "\n Fl3 Req:" + fl3ReqTracker +
+                "\n Fl4 Req:" + fl4ReqTracker + "\n Fl5 Req:" + fl3ReqTracker + "\n Total People:" +
+                totalPeopleWhoWantedToRideElevator + "\n Total Rides:" + totalPeopleWhoRodeElevator +
+                "\n Total Turnaways:" + totalTurnaways + "\n Total Empty:" + totalEmptyElevator);
     }
 
     public int getFl1ReqTracker() {
@@ -48,12 +58,12 @@ public class ElevatorMetrics {
         return fl5ReqTracker;
     }
 
-    public int getTotalRequests() {
-        return totalRequests;
+    public int getTotalPeopleWhoWantedToRideElevator() {
+        return totalPeopleWhoWantedToRideElevator;
     }
 
-    public int getTotalPeopleRidingElevator() {
-        return totalPeopleRidingElevator;
+    public int getTotalPeopleWhoRodeElevator() {
+        return totalPeopleWhoRodeElevator;
     }
 
     public int getTotalEmptyElevator() {
@@ -62,10 +72,6 @@ public class ElevatorMetrics {
 
     public int getTotalTurnaways() {
         return totalTurnaways;
-    }
-
-    public int getTotalNumberOfStops() {
-        return totalNumberOfStops;
     }
 
     public void setFl1ReqTracker(int fl1ReqTracker) {
@@ -88,20 +94,16 @@ public class ElevatorMetrics {
         this.fl5ReqTracker = fl5ReqTracker;
     }
 
-    public void setTotalRequests(int totalRequests) {
-        this.totalRequests = totalRequests;
+    public void setTotalPeopleWhoWantedToRideElevator(int totalPeopleWhoWantedToRideElevator) {
+        this.totalPeopleWhoWantedToRideElevator = totalPeopleWhoWantedToRideElevator;
     }
 
-    public void setTotalPeopleRidingElevator(int totalPeopleRidingElevator) {
-        this.totalPeopleRidingElevator = totalPeopleRidingElevator;
+    public void setTotalPeopleWhoRodeElevator(int totalPeopleWhoRodeElevator) {
+        this.totalPeopleWhoRodeElevator = totalPeopleWhoRodeElevator;
     }
 
     public void setTotalEmptyElevator(int totalEmptyElevator) {
         this.totalEmptyElevator = totalEmptyElevator;
-    }
-
-    public void setTotalNumberOfStops(int totalNumberOfStops) {
-        this.totalNumberOfStops = totalNumberOfStops;
     }
 
     public void setTotalTurnaways(int totalTurnaways) {

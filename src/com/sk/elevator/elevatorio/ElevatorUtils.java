@@ -2,15 +2,17 @@ package com.sk.elevator.elevatorio;
 
 import com.sk.elevator.Elevator;
 import com.sk.elevator.button.Button;
+import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.person.Person;
 import com.sk.elevator.stack.LinkedListStack;
 import com.sk.elevator.stack.SNode;
 
 public class ElevatorUtils {
 
-    public static void loadPerson(Person person, LinkedListStack elevator, Button button) {
+    public static void loadPerson(Person person, LinkedListStack elevator, Button button, ElevatorMetrics eMetrics) {
         elevator.push(person);
-        button.pushFloorRequestedButton(person.getExitFloor());
+        button.pushFloorRequestedButton(person.getExitFloor(), eMetrics);
+        eMetrics.setTotalPeopleWhoRodeElevator(eMetrics.getTotalPeopleWhoRodeElevator() + 1);
         // TODO print name of person getting on plus floor
     }
 
