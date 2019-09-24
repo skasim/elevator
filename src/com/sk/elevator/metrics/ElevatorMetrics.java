@@ -26,16 +26,11 @@ public class ElevatorMetrics {
         this.totalEmptyElevator= 0;
     }
 
-    //TODO if have time
-//    public int calculateMostRequestedFloor() {
-//
-//    }
-
     public String toString() { //TODO clean up the overflow
-        return ("\nELEVATOR METRICS REPORT \n Fl1 Total Requests:" + fl1ReqTracker + "\n Fl2 Total Req:" + fl2ReqTracker + "\n Fl3 Total Requests:" + fl3ReqTracker +
-                "\n Fl4 Total Requests:" + fl4ReqTracker + "\n Fl5 Total Requests:" + fl3ReqTracker + "\n Total Riders:" +
-                totalPeopleWhoWantedToRideElevator + "\n Total Rides:" + totalPeopleWhoRodeElevator +
-                "\n Total Turnaways:" + totalTurnaways + "\n Total Empty Elevator:" + totalEmptyElevator);
+        return (" * Fl1 Total Requests:" + fl1ReqTracker + "\n * Fl2 Total Req:" + fl2ReqTracker + "\n * Fl3 Total Requests:" + fl3ReqTracker +
+                "\n * Fl4 Total Requests:" + fl4ReqTracker + "\n * Fl5 Total Requests:" + fl3ReqTracker + "\n * Total Riders:" +
+                totalPeopleWhoWantedToRideElevator + "\n * Total Rides:" + totalPeopleWhoRodeElevator +
+                "\n * Total Turnaways:" + totalTurnaways + "\n * Total Empty Elevator:" + totalEmptyElevator);
     }
 
     public int getFl1ReqTracker() {

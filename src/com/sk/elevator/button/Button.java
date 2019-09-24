@@ -12,8 +12,6 @@ public class Button {
     private boolean goingUp;
     private int currentFloor;
     private int maxFloor;
-//    private int lowestFloor;
-//    private int highestFloor;
 
     public Button() {
         this.fl1 = 0;
@@ -24,8 +22,6 @@ public class Button {
         this.goingUp = true;
         this.currentFloor = 1;
         this.maxFloor = currentFloor;
-//        this.lowestFloor = 5;
-//        this.highestFloor = 1;
     }
 
     public void zeroOutButtonForFloor(int floor) {
@@ -48,7 +44,6 @@ public class Button {
     }
 
     public void pushFloorRequestedButton(int floorRequested, ElevatorMetrics eMetrics) {
-//        calculateHighestLowestFloors(floorRequested); TODO clean up
         switch(floorRequested) {
             case 1:
                 this.fl1++;
@@ -87,34 +82,6 @@ public class Button {
         return maxFloor;
     }
 
-//    // TODO you have not solved problem of ascending or descending
-//    public int determineNextFloor(int nextPersonEntryFloor) {
-//        int nextFloor;
-//        if (goingUp) {
-//            if (lowestFloor > nextPersonEntryFloor) {
-//                nextFloor = nextPersonEntryFloor;
-//            } else {
-//                nextFloor = lowestFloor;
-//            }
-//            if (nextFloor < currentFloor) {
-//                goingUp = false;
-//            }
-//        } else {
-//            if (highestFloor < nextPersonEntryFloor) {
-//                nextFloor = nextPersonEntryFloor;
-//            } else {
-//                nextFloor = highestFloor;
-//            }
-//            if (nextFloor > currentFloor) {
-//                goingUp = true;
-//            }
-//        }
-//        currentFloor = nextFloor;
-//        return nextFloor;
-//    }
-
-
-    // TODO you have not solved problem of ascending or descending
     public int determineNextFloor(int nextPersonEntryFloor) {
         boolean haveNextFloor = false;
         int nextFloor = currentFloor;

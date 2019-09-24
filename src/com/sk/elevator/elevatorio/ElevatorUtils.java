@@ -1,12 +1,10 @@
 package com.sk.elevator.elevatorio;
 
-import com.sk.elevator.Elevator;
 import com.sk.elevator.button.Button;
 import com.sk.elevator.fileio.FileUtils;
 import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.person.Person;
 import com.sk.elevator.stack.LinkedListStack;
-import com.sk.elevator.stack.SNode;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,9 +19,8 @@ public class ElevatorUtils {
         try {
             FileUtils.writeFileLineByLine(new File(outfilepath), "Getting on Floor[" + person.getExitFloor() +"] is [" + person.getName() + "] and will get off at [" + person.getExitFloor() + "]");
         } catch (IOException e) {
-            e.printStackTrace(); //TODO clean up all of these
+            System.err.println(e.toString()); //TODO clean up all of these
         }
-        // TODO print name of person getting on plus floor
     }
 
     public static void finalUnload(LinkedListStack elevator, Button button, BufferedWriter writer, String outfilepath) {
@@ -82,7 +79,7 @@ public class ElevatorUtils {
                 try {
                     FileUtils.writeFileLineByLine(new File(outfilepath), "Exiting Floor[" + person.getExitFloor() +"] is [" + person.getName() + "] with [" + person.getExitTracker() + "] temporary exits");
                 } catch (IOException e) {
-                    e.printStackTrace(); //TODO clean up all of these
+                    System.err.println(e.toString()); //TODO clean up all of these
                 }
 
                 i++;
@@ -94,7 +91,7 @@ public class ElevatorUtils {
                 try {
                     FileUtils.writeFileLineByLine(new File(outfilepath), "Temporarily Exiting Floor[" + currentFloor +"] is [" + person.getName() + "]");
                 } catch (IOException e) {
-                    e.printStackTrace(); //TODO clean up all of these
+                    System.err.println(e.toString()); //TODO clean up all of these
                 }
                 // TODO write this out to document
             }

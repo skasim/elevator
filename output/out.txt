@@ -1,5 +1,13 @@
 
-Begin Elevator Simulation.
+########################################
+
+#    ABC Corp. Elevator Simulation.    #
+
+########################################
+
+
+
+ Begin Elevator Simulation.
 
 Getting on Floor[5] is [Eli] and will get off at [5]
 Getting on Floor[3] is [Babs] and will get off at [3]
@@ -123,13 +131,19 @@ Exiting Floor[5] is [Sue] with [0] temporary exits
 
 End Elevator Simulation.
 
-ELEVATOR METRICS REPORT 
- Fl1 Total Requests:8
- Fl2 Total Req:6
- Fl3 Total Requests:13
- Fl4 Total Requests:9
- Fl5 Total Requests:13
- Total Riders:49
- Total Rides:47
- Total Turnaways:2
- Total Empty Elevator:3
+########################################
+
+#             Metrics Report           #
+
+########################################
+
+
+ * Fl1 Total Requests:8
+ * Fl2 Total Req:6
+ * Fl3 Total Requests:13
+ * Fl4 Total Requests:9
+ * Fl5 Total Requests:13
+ * Total Riders:49
+ * Total Rides:47
+ * Total Turnaways:2
+ * Total Empty Elevator:3

@@ -10,40 +10,39 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class FileUtils {
 
     // TODO This method can probably be removed
-    public static void readWriteFile(String inFilepath, String outFilepath) {
-        BufferedReader reader;
-        File inFile = new File(inFilepath);
-        File outFile = new File(outFilepath);
-
-        try {
-            reader = new BufferedReader(new FileReader((inFile)));
-            readWriteLine(reader, outFile);
-        } catch (FileNotFoundException e) {
-            System.err.println(e.toString());
-        }
-    }
+//    public static void readWriteFile(String inFilepath, String outFilepath) {
+//        BufferedReader reader;
+//        File inFile = new File(inFilepath);
+//        File outFile = new File(outFilepath);
+//
+//        try {
+//            reader = new BufferedReader(new FileReader((inFile)));
+//            readWriteLine(reader, outFile);
+//        } catch (FileNotFoundException e) {
+//            System.err.println(e.toString());
+//        }
+//    }
 
     // TODO Remove this as well
-    public static void scanFile(String inFilepath) {
-        try {
-            Scanner scanner = new Scanner(new File(inFilepath));
-            while(scanner.hasNextLine()) {
-
-                String line = scanner.nextLine();
-                System.out.println(line);
-                Person person = new Person();
-                parseLineToCreatePerson(line, person);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void scanFile(String inFilepath) {
+//        try {
+//            Scanner scanner = new Scanner(new File(inFilepath));
+//            while(scanner.hasNextLine()) {
+//
+//                String line = scanner.nextLine();
+//                System.out.println(line);
+//                Person person = new Person();
+//                parseLineToCreatePerson(line, person);
+//            }
+//        } catch (FileNotFoundException e) {
+//            System.err.println(e.toString());
+//        }
+//    }
 
     private static int convertCharToInt(char c) {
         if (c == '1') {
@@ -135,17 +134,6 @@ public class FileUtils {
         return reader;
     }
 
-//    public static void writeFileLineByLine(BufferedWriter writer, String line) throws IOException {
-//        try {
-//            writer.newLine();
-//            if (line != null) {
-//                writer.write(line);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        writer.close();
-//    }
 
     public static void writeFileLineByLine(File outFile, String line) throws IOException {
         BufferedWriter writer = createWriter(outFile);
@@ -155,7 +143,7 @@ public class FileUtils {
                 writer.write(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.toString());
         }
         writer.close();
     }
