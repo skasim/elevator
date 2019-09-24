@@ -83,16 +83,16 @@ public class Elevator {
                             System.err.println(e.toString());
                         }
                     }
-                    if (character==' ' || character=='\t') {
-                        // do nothing
-                    }
+//                    if (character==' ' || character=='\t') {
+//                        // do nothing
+//                    }
                     else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5') && intCount==0) {
                         intCount++;
                         entryFl = FileUtils.convertCharToInt(character);
                     } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5' && intCount==1) ) {
                         exitFl = FileUtils.convertCharToInt(character);
                     } else {
-                        if (character != '\n' && intCount !=1) {
+                        if (character != '\n' && intCount !=1 && character!=' ' && character!='\t') {
                             name = name + character;
                         }
                     }
