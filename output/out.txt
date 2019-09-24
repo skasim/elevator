@@ -133,3 +133,137 @@ ELEVATOR METRICS REPORT
  Total Rides:47
  Total Turnaways:2
  Total Empty Elevator:3
+Begin Elevator Simulation.
+
+Getting on Floor[1] is [Eli] and will get off at [5]
+Getting on Floor[1] is [Babs] and will get off at [3]
+Getting on Floor[1] is [Fred] and will get off at [2]
+Getting on Floor[1] is [Tom] and will get off at [4]
+Temporarily Exiting Floor[2] is [Tom]
+Exiting Floor[2] is [Fred] with [0] temporary exits
+Getting on Floor[2] is [Ian] and will get off at [3]
+Getting on Floor[2] is [Tip] and will get off at [4]
+Temporarily Exiting Floor[3] is [Tip]
+Exiting Floor[3] is [Ian] with [0] temporary exits
+Temporarily Exiting Floor[3] is [Tom]
+Exiting Floor[3] is [Babs] with [0] temporary exits
+Getting on Floor[3] is [Barb] and will get off at [5]
+Temporarily Exiting Floor[4] is [Barb]
+Exiting Floor[4] is [Tip] with [1] temporary exits
+Exiting Floor[4] is [Tom] with [2] temporary exits
+Exiting Floor[5] is [Barb] with [1] temporary exits
+Exiting Floor[5] is [Eli] with [0] temporary exits
+Getting on Floor[5] is [Tina] and will get off at [2]
+Getting on Floor[5] is [Joe] and will get off at [1]
+Getting on Floor[4] is [Hal] and will get off at [2]
+Getting on Floor[3] is [Ted] and will get off at [1]
+Temporarily Exiting Floor[2] is [Ted]
+Exiting Floor[2] is [Hal] with [0] temporary exits
+Temporarily Exiting Floor[2] is [Joe]
+Exiting Floor[2] is [Tina] with [0] temporary exits
+Getting on Floor[2] is [Deb] and will get off at [1]
+Exiting Floor[1] is [Deb] with [0] temporary exits
+Exiting Floor[1] is [Ted] with [1] temporary exits
+Exiting Floor[1] is [Joe] with [1] temporary exits
+Getting on Floor[1] is [Ann] and will get off at [3]
+Getting on Floor[1] is [Jim] and will get off at [3]
+Getting on Floor[1] is [Sal] and will get off at [3]
+Getting on Floor[1] is [Vic] and will get off at [4]
+Getting on Floor[1] is [Flo] and will get off at [5]
+Getting on Floor[1] is [Ada] and will get off at [5]
+Elevator at max capacity! [Dina] was not able to get on at floor [2]
+Elevator at max capacity! [Bob] was not able to get on at floor [2]
+Temporarily Exiting Floor[3] is [Ada]
+Temporarily Exiting Floor[3] is [Flo]
+Temporarily Exiting Floor[3] is [Vic]
+Exiting Floor[3] is [Sal] with [0] temporary exits
+Exiting Floor[3] is [Jim] with [0] temporary exits
+Exiting Floor[3] is [Ann] with [0] temporary exits
+Temporarily Exiting Floor[4] is [Ada]
+Temporarily Exiting Floor[4] is [Flo]
+Exiting Floor[4] is [Vic] with [1] temporary exits
+Exiting Floor[5] is [Ada] with [2] temporary exits
+Exiting Floor[5] is [Flo] with [2] temporary exits
+Getting on Floor[5] is [Lee] and will get off at [3]
+Getting on Floor[4] is [Wil] and will get off at [3]
+Getting on Floor[4] is [Gia] and will get off at [1]
+Temporarily Exiting Floor[3] is [Gia]
+Exiting Floor[3] is [Wil] with [0] temporary exits
+Exiting Floor[3] is [Lee] with [0] temporary exits
+Getting on Floor[3] is [Isa] and will get off at [1]
+Exiting Floor[1] is [Isa] with [0] temporary exits
+Exiting Floor[1] is [Gia] with [1] temporary exits
+Getting on Floor[1] is [Abe] and will get off at [3]
+Getting on Floor[1] is [Lou] and will get off at [3]
+Getting on Floor[1] is [Yul] and will get off at [4]
+Getting on Floor[1] is [Al] and will get off at [4]
+Getting on Floor[2] is [Lew] and will get off at [5]
+Getting on Floor[2] is [Nan] and will get off at [3]
+Exiting Floor[3] is [Nan] with [0] temporary exits
+Temporarily Exiting Floor[3] is [Lew]
+Temporarily Exiting Floor[3] is [Al]
+Temporarily Exiting Floor[3] is [Yul]
+Exiting Floor[3] is [Lou] with [0] temporary exits
+Exiting Floor[3] is [Abe] with [0] temporary exits
+Getting on Floor[3] is [Ina] and will get off at [4]
+Getting on Floor[3] is [Bif] and will get off at [5]
+Getting on Floor[3] is [Moe] and will get off at [5]
+Temporarily Exiting Floor[4] is [Moe]
+Temporarily Exiting Floor[4] is [Bif]
+Exiting Floor[4] is [Ina] with [0] temporary exits
+Temporarily Exiting Floor[4] is [Lew]
+Exiting Floor[4] is [Al] with [1] temporary exits
+Exiting Floor[4] is [Yul] with [1] temporary exits
+Exiting Floor[5] is [Moe] with [1] temporary exits
+Exiting Floor[5] is [Bif] with [1] temporary exits
+Exiting Floor[5] is [Lew] with [2] temporary exits
+Getting on Floor[5] is [Jan] and will get off at [1]
+Exiting Floor[1] is [Jan] with [0] temporary exits
+Getting on Floor[1] is [Mia] and will get off at [3]
+Getting on Floor[1] is [Lisa] and will get off at [4]
+Getting on Floor[2] is [Cal] and will get off at [5]
+Temporarily Exiting Floor[3] is [Cal]
+Temporarily Exiting Floor[3] is [Lisa]
+Exiting Floor[3] is [Mia] with [0] temporary exits
+Temporarily Exiting Floor[4] is [Cal]
+Exiting Floor[4] is [Lisa] with [1] temporary exits
+Getting on Floor[4] is [Pat] and will get off at [5]
+Getting on Floor[4] is [Tess] and will get off at [2]
+Temporarily Exiting Floor[5] is [Tess]
+Exiting Floor[5] is [Pat] with [0] temporary exits
+Exiting Floor[5] is [Cal] with [2] temporary exits
+Getting on Floor[3] is [Nora] and will get off at [1]
+Temporarily Exiting Floor[2] is [Nora]
+Exiting Floor[2] is [Tess] with [1] temporary exits
+Getting on Floor[2] is [Don] and will get off at [1]
+Exiting Floor[1] is [Don] with [0] temporary exits
+Exiting Floor[1] is [Nora] with [1] temporary exits
+Getting on Floor[1] is [Sam] and will get off at [5]
+Exiting Floor[5] is [Sam] with [0] temporary exits
+Getting on Floor[5] is [Liv] and will get off at [4]
+Exiting Floor[4] is [Liv] with [0] temporary exits
+Getting on Floor[1] is [Nina] and will get off at [3]
+Exiting Floor[3] is [Nina] with [0] temporary exits
+Getting on Floor[5] is [Mary] and will get off at [2]
+Exiting Floor[2] is [Mary] with [0] temporary exits
+Getting on Floor[1] is [Ed] and will get off at [2]
+Exiting Floor[2] is [Ed] with [0] temporary exits
+Getting on Floor[2] is [Tad] and will get off at [3]
+Exiting Floor[3] is [Tad] with [0] temporary exits
+Getting on Floor[3] is [Ali] and will get off at [4]
+Exiting Floor[4] is [Ali] with [0] temporary exits
+Getting on Floor[4] is [Sue] and will get off at [5]
+Exiting Floor[5] is [Sue] with [0] temporary exits
+
+End Elevator Simulation.
+
+ELEVATOR METRICS REPORT 
+ Fl1 Total Requests:8
+ Fl2 Total Req:6
+ Fl3 Total Requests:13
+ Fl4 Total Requests:9
+ Fl5 Total Requests:13
+ Total Riders:49
+ Total Rides:47
+ Total Turnaways:2
+ Total Empty Elevator:3

@@ -118,7 +118,7 @@ public class Elevator {
                         intCount = 0;
                         entryFl = 0;
                         exitFl = 0;
-                        System.out.println(person.toString());
+//                        System.out.println(person.toString());
                     }
                 }
 
