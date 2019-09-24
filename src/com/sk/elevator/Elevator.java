@@ -76,9 +76,9 @@ public class Elevator {
                 int intCount =0;
                 while ((c = inputStream.read()) != -1) { // read and process one character
                     char character = (char) c;
-                    if (c=='/') {
+                    if (character=='/' || character=='#') {
                         try {
-                            throw new NotValidInputException("[" + c + "] is not valid input.");
+                            throw new NotValidInputException("[" + character + "] is not valid input.");
                         } catch (NotValidInputException e) {
                             System.err.println(e.toString());
                         }

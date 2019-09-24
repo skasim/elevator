@@ -1,6 +1,7 @@
 
 Begin Elevator Simulation.
 
+Getting on Floor[1] is [Eli] and will get off at [5]
 Getting on Floor[1] is [Babs] and will get off at [3]
 Getting on Floor[1] is [Fred] and will get off at [2]
 Getting on Floor[1] is [Tom] and will get off at [4]
@@ -17,6 +18,7 @@ Temporarily Exiting Floor[4] is [Barb]
 Exiting Floor[4] is [Tip] with [1] temporary exits
 Exiting Floor[4] is [Tom] with [2] temporary exits
 Exiting Floor[5] is [Barb] with [1] temporary exits
+Exiting Floor[5] is [Eli] with [0] temporary exits
 Getting on Floor[5] is [Tina] and will get off at [2]
 Getting on Floor[5] is [Joe] and will get off at [1]
 Getting on Floor[4] is [Hal] and will get off at [2]
@@ -127,7 +129,7 @@ ELEVATOR METRICS REPORT
  Fl3 Total Requests:13
  Fl4 Total Requests:9
  Fl5 Total Requests:13
- Total Riders:48
- Total Rides:46
+ Total Riders:49
+ Total Rides:47
  Total Turnaways:2
  Total Empty Elevator:3
