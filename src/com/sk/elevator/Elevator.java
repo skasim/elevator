@@ -92,7 +92,7 @@ public class Elevator {
                     } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5' && intCount==1) ) {
                         exitFl = FileUtils.convertCharToInt(character);
                     } else {
-                        if (character != '\n') {
+                        if (character != '\n' && intCount !=1) {
                             name = name + character;
                         }
                     }
