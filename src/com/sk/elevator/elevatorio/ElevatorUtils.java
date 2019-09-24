@@ -19,7 +19,7 @@ public class ElevatorUtils {
         button.pushFloorRequestedButton(person.getExitFloor(), eMetrics);
         eMetrics.setTotalPeopleWhoRodeElevator(eMetrics.getTotalPeopleWhoRodeElevator() + 1);
         try {
-            FileUtils.writeFileLineByLine(new File(outfilepath), "Getting on Floor[" + person.getExitFloor() +"] is [" + person.getName() + "] and will get off at [" + person.getExitFloor() + "]");
+            FileUtils.writeFileLineByLine(new File(outfilepath), "Getting on Floor[" + person.getEntryFloor() +"] is [" + person.getName() + "] and will get off at [" + person.getExitFloor() + "]");
         } catch (IOException e) {
             e.printStackTrace(); //TODO clean up all of these
         }

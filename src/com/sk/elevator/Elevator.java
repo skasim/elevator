@@ -80,7 +80,7 @@ public class Elevator {
                         try {
                             throw new NotValidInputException("[" + c + "] is not valid input.");
                         } catch (NotValidInputException e) {
-                            e.printStackTrace();
+                            System.err.println(e.toString());
                         }
                     }
                     if (character==' ' || character=='\t') {
@@ -89,7 +89,7 @@ public class Elevator {
                     else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5') && intCount==0) {
                         intCount++;
                         entryFl = FileUtils.convertCharToInt(character);
-                    } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5') && intCount==1) {
+                    } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5' && intCount==1) ) {
                         exitFl = FileUtils.convertCharToInt(character);
                     } else {
                         if (character != '\n') {
@@ -103,8 +103,17 @@ public class Elevator {
                         // PRODCESSING STARTS FROM HERE
                         Person person = new Person(name, entryFl, exitFl);
                         System.out.println(person.toString());
-                        processPerson(person, elevator, button, eMetrics, writer, outFilepath);
-                        ////
+                        try {
+                            if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1 || person.getEntryFloor() >5 || person.getExitFloor() < 1 || person.getExitFloor() > 5) {
+                                throw new NotValidInputException("Invalid floor values provided. Must be be < 1 and > 5");
+                            } else {
+                                processPerson(person, elevator, button, eMetrics, writer, outFilepath);
+                            }
+                            ////
+
+                        } catch (NotValidInputException e) {
+                            System.err.println(e.toString());
+                        }
                         name = "";
                         intCount = 0;
                         entryFl = 0;
