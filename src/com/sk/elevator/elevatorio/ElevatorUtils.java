@@ -29,7 +29,7 @@ public class ElevatorUtils {
      */
     public static void loadPerson(Person person, LinkedListStack elevator, Button button, ElevatorMetrics eMetrics,
                                   File outFile) {
-        // check if max elevator capacity is reached. If true, print output to text file and increment appropriate
+        // Check if max elevator capacity is reached. If true, print output to text file and increment appropriate
         // metric
         if (maxCapacityReached(elevator)) {
             try {
@@ -42,7 +42,7 @@ public class ElevatorUtils {
             }
 
         } else {
-            // if max capacity is not reached, then load the person, output action to text file, and increment
+            // If max capacity is not reached, then load the person, output action to text file, and increment
             // appropriate metrics
             elevator.push(person);
             button.pushFloorRequestedButton(person.getExitFloor(), eMetrics);
@@ -69,11 +69,11 @@ public class ElevatorUtils {
      * @param outFile: String representing the path to the output file.
      */
     public static void finalUnload(LinkedListStack elevator, Button button, File outFile) {
-        // only perform this method if the elevator is not empty
+        // Only perform this method if the elevator is not empty
         if (!elevator.isEmpty()) {
             LinkedListStack auxStack = new LinkedListStack();
 
-            // while the elevator is not empty, push every rider in the elevator to an auxiliary stack so as to
+            // While the elevator is not empty, push every rider in the elevator to an auxiliary stack so as to
             // calculate the highest floor of hte people still remaining in the elevator
             while(!elevator.isEmpty()) {
                 Person tmpPerson = elevator.pop();
@@ -81,20 +81,20 @@ public class ElevatorUtils {
                 auxStack.push(tmpPerson);
             }
 
-            // then push riders in auxiliary stack back to elevator stack
+            // Then push riders in auxiliary stack back to elevator stack
             while(!auxStack.isEmpty()) {
                 Person tmpPerson = auxStack.pop();
                 elevator.push(tmpPerson);
             }
 
-            // work the elevator up to the highest floor dropping people off only at the requested floors
+            // Move the elevator up to the highest floor dropping people off only at the requested floors
             while(button.getMaxFloor() > button.getCurrentFloor() && !elevator.isEmpty()) {
                 button.setCurrentFloor(button.getCurrentFloor()+1);
                 if (button.returnNumberOfFloorRequests(button.getCurrentFloor()) > 0) {
                     unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
                 }
             }
-            // once max floor is reached, begin final descent and drop riders off at requested floors
+            // Once max floor is reached, begin final descent and drop riders off at requested floors
             // finally stopping at floor 1
             while (button.getCurrentFloor() !=1 || !elevator.isEmpty()) {
                 button.setCurrentFloor(button.getCurrentFloor()-1);
@@ -122,11 +122,11 @@ public class ElevatorUtils {
         int numOfPeopleToUnload = button.returnNumberOfFloorRequests(currentFloor);
         int i = 0;
 
-        // continue number popping riders from elevator stack to auxiliary stack until all the riders who want to get
+        // Continue number popping riders from elevator stack to auxiliary stack until all the riders who want to get
         // off the elevator have been let out
         while (i < numOfPeopleToUnload) {
             Person person = elevator.pop();
-            // if a rider wants to get off on a floor then print to output and not push onto auxiliary stack
+            // If a rider wants to get off on a floor then print to output and not push onto auxiliary stack
             if (person.getExitFloor() == currentFloor) {
                 try {
                     FileUtils.writeFileLineByLine(outFile, "====> Exiting Floor[" +
@@ -135,11 +135,11 @@ public class ElevatorUtils {
                 } catch (IOException e) {
                     System.err.println(e.toString());
                 }
-                i++;    // tracks number of people who wanted to exit at a floor and have been let off // TODO CHECK
+                i++;    // Tracks number of people who wanted to exit at a floor and have been let off // TODO CHECK
             } else {
-                // track the number of temporary exits a rider has to make
+                // Track the number of temporary exits a rider has to make
                 person.setExitTracker(person.getExitTracker()+1);
-                // push the rider onto the auxiliary stack and capture action to output
+                // Push the rider onto the auxiliary stack and capture action to output
                 auxStack.push(person);
                 try {
                     FileUtils.writeFileLineByLine(outFile, "<===> Temporarily Exiting Floor[" +
@@ -149,10 +149,10 @@ public class ElevatorUtils {
                 }
             }
         }
-        // once floor has been unloaded, zero out the floor button, which is similar to when a lit button in an
+        // Once floor has been unloaded, zero out the floor button, which is similar to when a lit button in an
         // elevator becomes unlit after a floor has been reached
         button.zeroOutButtonForFloor(currentFloor);
-        // reload riders from auxiliary stack to elevator stack
+        // Reload riders from auxiliary stack to elevator stack
         reloadPeople(auxStack, elevator);
     }
 

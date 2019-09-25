@@ -14,14 +14,31 @@ import static com.sk.elevator.elevatorio.ElevatorUtils.*;
 import static com.sk.elevator.fileio.FileUtils.*;
 
 /**
+ * Lab 1: Elevator Simulation
+ * This program simulates the functioning of an elevator in a building with floors one through five. The elevator is
+ * narrow so individuals can only be loaded on and off in the first in first out manner of a stack. The purpose
+ * of this program is to demonstrate knowledge of utilizing a stack class to solve such a problem as well as using logic
+ * to determine how to move the elevator and when and how to load and offload riders. The program is limited to using
+ * Java primitives in it's execution exception in the case of File input out.
  *
+ * To execute the program, read the README.
+ *
+ * @author Samra Kasim
  */
 public class Elevator {
     // TODO write a report
     // TODO java doc all over
     // TODO remove sys.out and put in sys.errors
     /**
-     * Main class to enter the program.
+     * Main class to enter the program. Input and output filepaths are provided as arguments in the command line.
+     * The class reads each row of input text character by character. After conducting validation checks of each
+     * character the Person object is created. The main class also instantiates the LinkedListStack elevator object,
+     * the Button object (representing the button panel of an elevator). After the creation of the Person object, it is
+     * passed on for further processing with the processPerson method. This method utilizes methods such as loadPerson,
+     * unloadPeople, determineNextFloor, etc. to process the Person. Writes are made to the output file throughout the
+     * execution of the program. After all the input is processed, a finalUnload method is run to ensure that anyone
+     * remaining on the elevator will also be off loaded. Finally, a metrics report is written to output providing a
+     * comprehensive overview of the functioning of the elevator along key metrics.
      *
      * @param args Takes two command line arguments, the input filepath and the output filepath
      */
@@ -55,10 +72,7 @@ public class Elevator {
                 String line = scanner.nextLine();
                 Person person = new Person();
                 person = parseLineToCreatePerson(line, person);  // TODO this is where junk gets processed
-
-                // TODO insert here
                 processPerson(person, elevator, button, eMetrics, outFile);
-                // TODO ENDS HERE
             }
 
             // TODO gotta get rid of sue
@@ -86,7 +100,9 @@ public class Elevator {
     }
     //TODO FINISH THIS
     /**
-     *
+     * Method handles logic for processing a Person object. It enables riders to be loaded onto the elevator,
+     * offloaded when it's their requested floor, and moves elevator to next floor (based on either the floor requests
+     * of the riders in the elevator or the entry floor of the next person waiting determined by whichever is nearer.
      * @param person: Person object representing the person to load onto the elevator.
      * @param elevator: Elevator object representing the elevator.
      * @param button: Button object representing the button panel in an elevator.

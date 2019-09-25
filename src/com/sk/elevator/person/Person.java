@@ -10,7 +10,7 @@ public class Person {
     String name;
     int entryFloor;
     int exitFloor;
-    int exitTracker;    // track the number of temporary exits made by the rider
+    int exitTracker;    // Track the number of temporary exits made by the rider
 
     /**
      * Constructor to instantiate object with no parameters provided.

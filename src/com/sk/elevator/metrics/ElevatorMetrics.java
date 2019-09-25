@@ -14,8 +14,8 @@ public class ElevatorMetrics {
     private int fl5ReqTracker;
     private int totalPeopleWhoWantedToRideElevator;
     private int totalPeopleWhoRodeElevator;
-    private int totalTurnaways;     // represents people unable to ride elevator
-    private int totalEmptyElevator; // times when elevator was empty
+    private int totalTurnaways;     // Represents people unable to ride elevator
+    private int totalEmptyElevator; // Times when elevator was empty
 
     /**
      * Constructor for the ElevatorMetrics job used in instantiating the object at the beginning of the simulation.

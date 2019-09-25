@@ -16,9 +16,9 @@ public class Button {
     private int fl3;
     private int fl4;
     private int fl5;
-    private boolean goingUp;    // represents whether the elevator is ascending or descending
-    private int currentFloor;   // represents the current floor of the elevator at a point in time
-    private int maxFloor;       // used to calculate the highest floor requested at a point in time
+    private boolean goingUp;    // Represents whether the elevator is ascending or descending
+    private int currentFloor;   // Represents the current floor of the elevator at a point in time
+    private int maxFloor;       // Used to calculate the highest floor requested at a point in time
 
     /**
      * Constructor method creates a Button object.
@@ -129,10 +129,10 @@ public class Button {
         int nextFloor = currentFloor;
 
         while (!haveNextFloor) {
-            if (goingUp) {      // if the elevator is going up
+            if (goingUp) {      // If the elevator is going up
                 nextFloor++;    // increment nextFloor by 1
                 if (nextFloor == 5) goingUp = false;    // But if nextFloor is 5 switch goingUp boolean to false
-                // if someone inside the elevator requested the next floor or if the next person waiting outside has
+                // If someone inside the elevator requested the next floor or if the next person waiting outside has
                 // requested the next floor, then that is the next floor. Otherwise, increment one more time and test
                 // again
                 if (returnNumberOfFloorRequests(nextFloor) != 0 || nextFloor == nextPersonEntryFloor) {
@@ -148,9 +148,9 @@ public class Button {
 //                    }
 //                }
             } else {
-                nextFloor--;    // if the elevator is going down decrement the next floor by 1
-                if (nextFloor == 1) goingUp = true;     // if nextFloor is 1, then switch goingUp boolean to true
-                // if someone inside the elevator requested the next floor or if the next person waiting outside has
+                nextFloor--;    // If the elevator is going down decrement the next floor by 1
+                if (nextFloor == 1) goingUp = true;     // If nextFloor is 1, then switch goingUp boolean to true
+                // If someone inside the elevator requested the next floor or if the next person waiting outside has
                 // requested the next floor, then that is the next floor. Otherwise, increment one morre time and test
                 // again.
                 if (returnNumberOfFloorRequests(nextFloor) != 0 || nextFloor == nextPersonEntryFloor) {
