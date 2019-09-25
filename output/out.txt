@@ -11,7 +11,10 @@
 
 <==== Getting on Floor[1] is [Eli] and will get off at [5]
 <==== Getting on Floor[1] is [Babs] and will get off at [3]
+<==== Getting on Floor[1] is [Fred] and will get off at [2]
 <==== Getting on Floor[1] is [Tom] and will get off at [4]
+<===> Temporarily Exiting Floor[2] is [Tom]
+====> Exiting Floor[2] is [Fred] with [0] temporary exits
 <==== Getting on Floor[2] is [Ian] and will get off at [3]
 <==== Getting on Floor[2] is [Tip] and will get off at [4]
 <===> Temporarily Exiting Floor[3] is [Tip]
@@ -21,7 +24,7 @@
 <==== Getting on Floor[3] is [Barb] and will get off at [5]
 <===> Temporarily Exiting Floor[4] is [Barb]
 ====> Exiting Floor[4] is [Tip] with [1] temporary exits
-====> Exiting Floor[4] is [Tom] with [1] temporary exits
+====> Exiting Floor[4] is [Tom] with [2] temporary exits
 ====> Exiting Floor[5] is [Barb] with [1] temporary exits
 ====> Exiting Floor[5] is [Eli] with [0] temporary exits
 <==== Getting on Floor[5] is [Tina] and will get off at [2]
@@ -130,11 +133,11 @@ End Elevator Simulation.
 
 
  * Floor 1 Total Requests: 8
- * Floor 2 Total Requests: 5
+ * Floor 2 Total Requests: 6
  * Floor 3 Total Requests: 12
  * Floor 4 Total Requests: 9
  * Floor 5 Total Requests: 12
- * Total Riders: 48
- * Total Rides: 43
+ * Total Riders: 49
+ * Total Rides: 44
  * Total Riders Unable to Ride: 5
  * Total Times Elevator was Empty: 3
