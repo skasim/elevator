@@ -84,7 +84,7 @@ public class Elevator {
             System.err.println(e.toString());
         }
     }
-
+    //TODO FINISH THIS
     /**
      *
      * @param person: Person object representing the person to load onto the elevator.
@@ -96,8 +96,9 @@ public class Elevator {
     private static void processPerson(Person person, LinkedListStack elevator, Button button, ElevatorMetrics eMetrics,
                                      File outFile) {
         // TODO buff read here instead
+        // Check if person object is null. if it is then exit method
         if (person != null) {
-
+            // If person object is not null check if valid floors are provided. If not, throw an error and exit method
             try {
 
                 if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1 ||
@@ -105,7 +106,8 @@ public class Elevator {
                     throw new NotValidInputException("Floor provided in input is not valid must be between " +
                             "1 and 5.");
                 }
-
+                // If floors are valid and the floor the next rider is getting on are the same then load rider
+                // and increment the necessary metrics
                 else {
                     eMetrics.setTotalPeopleWhoWantedToRideElevator(
                             eMetrics.getTotalPeopleWhoWantedToRideElevator() + 1);
@@ -113,7 +115,11 @@ public class Elevator {
                     if (button.getCurrentFloor() == person.getEntryFloor()) {
                         loadPerson(person, elevator, button, eMetrics, outFile);
                     }
-
+                    // If the floor for the rider is different (this accounts for possibly needing to skip floors)
+                    // then determine the next floor and check if elevator is not empty. If elevator is not empty,
+                    // unload riders if this is the floor they need to get off on.
+                    // Continue to do this until you are at the floor that the next rider wants to get on
+                    // and then load that person
                     else {
                         button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
 
