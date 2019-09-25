@@ -6,7 +6,6 @@ import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.person.Person;
 import com.sk.elevator.stack.LinkedListStack;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -24,7 +23,7 @@ public class Elevator {
     /**
      * Main class to enter the program.
      *
-     * @param args Takes two command line agruments, the input filepath and the output filepath
+     * @param args Takes two command line arguments, the input filepath and the output filepath
      */
     public static void main(String[] args) {
 
@@ -57,56 +56,9 @@ public class Elevator {
                 Person person = new Person();
                 person = parseLineToCreatePerson(line, person);  // TODO this is where junk gets processed
 
-                // TODO buff read here instead
-                if (person != null) {
-
-                    try {
-
-                        if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1 ||
-                                person.getEntryFloor() > 5 || person.getExitFloor() < 1 || person.getExitFloor() > 5) {
-                            throw new NotValidInputException("Floor provided in input is not valid must be between " +
-                                    "1 and 5.");
-                        }
-
-                        else {
-                            eMetrics.setTotalPeopleWhoWantedToRideElevator(
-                                    eMetrics.getTotalPeopleWhoWantedToRideElevator() + 1);
-
-                            if (button.getCurrentFloor() == person.getEntryFloor()) {
-                                loadPerson(person, elevator, button, eMetrics, outFile);
-                            }
-
-                            else {
-                                button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
-                                elevator.display();
-
-                                while (person.getEntryFloor() != button.getCurrentFloor()) {
-
-                                    if (!elevator.isEmpty()) {
-                                        unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
-                                    }
-
-                                    else {
-                                        eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
-                                    }
-                                    button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
-                                }
-
-                                if (!elevator.isEmpty()) {
-                                    unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
-                                }
-
-                                else {
-                                    eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
-                                }
-                                loadPerson(person, elevator, button, eMetrics, outFile);
-                            }
-                        }
-                    } catch (NotValidInputException e) {
-                        System.err.println(e.toString());
-                    }
-                } // TODO EO of buff reader
-
+                // TODO insert here
+                processPerson(person, elevator, button, eMetrics, outFile);
+                // TODO ENDS HERE
             }
 
             // TODO gotta get rid of sue
@@ -117,7 +69,7 @@ public class Elevator {
             } catch (IOException e) {
                 System.err.println(e.toString());
             }
-            System.out.println(eMetrics.toString());
+            System.out.println(eMetrics.toString()); //TODO remove
 
             try {
                 writeFileLineByLine(outFile, "\n########################################\n");
@@ -131,7 +83,66 @@ public class Elevator {
         } catch (IOException e) {
             System.err.println(e.toString());
         }
+    }
 
+    /**
+     *
+     * @param person: Person object representing the person to load onto the elevator.
+     * @param elevator: Elevator object representing the elevator.
+     * @param button: Button object representing the button panel in an elevator.
+     * @param eMetrics: ElevatorMetrics object representing overall metrics tracked for the elevator.
+     * @param outFile: File object representing the output file.
+     */
+    private static void processPerson(Person person, LinkedListStack elevator, Button button, ElevatorMetrics eMetrics,
+                                     File outFile) {
+        // TODO buff read here instead
+        if (person != null) {
+
+            try {
+
+                if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1 ||
+                        person.getEntryFloor() > 5 || person.getExitFloor() < 1 || person.getExitFloor() > 5) {
+                    throw new NotValidInputException("Floor provided in input is not valid must be between " +
+                            "1 and 5.");
+                }
+
+                else {
+                    eMetrics.setTotalPeopleWhoWantedToRideElevator(
+                            eMetrics.getTotalPeopleWhoWantedToRideElevator() + 1);
+
+                    if (button.getCurrentFloor() == person.getEntryFloor()) {
+                        loadPerson(person, elevator, button, eMetrics, outFile);
+                    }
+
+                    else {
+                        button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
+
+                        while (person.getEntryFloor() != button.getCurrentFloor()) {
+
+                            if (!elevator.isEmpty()) {
+                                unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
+                            }
+
+                            else {
+                                eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
+                            }
+                            button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
+                        }
+
+                        if (!elevator.isEmpty()) {
+                            unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
+                        }
+
+                        else {
+                            eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
+                        }
+                        loadPerson(person, elevator, button, eMetrics, outFile);
+                    }
+                }
+            } catch (NotValidInputException e) {
+                System.err.println(e.toString());
+            }
+        } // TODO EO of buff reader
     }
 }
 
