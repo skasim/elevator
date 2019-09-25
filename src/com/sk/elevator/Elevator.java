@@ -50,16 +50,20 @@ public class Elevator {
             System.err.println("Input and output file paths must be provided to run this simulation. Exiting now.");
             System.exit(1);
         }
-
+        // Variables related to program IO
+        FileReader inputStream = null;
         String inFilepath = args[0];
         String outFilepath = args[1];
         File outFile = new File(outFilepath);
 
         try {
+            // Instantiate objects used throughout project execution
             Scanner scanner = new Scanner(new File(inFilepath));
             LinkedListStack elevator = new LinkedListStack();
             Button button = new Button();
             ElevatorMetrics eMetrics = new ElevatorMetrics();
+
+            // write outs to outfile at the beginning of execution
             try {
                 writeFileLineByLine(outFile, "########################################\n");
                 writeFileLineByLine(outFile, "#    ABC Corp. Elevator Simulation.    #\n");
@@ -78,8 +82,8 @@ public class Elevator {
 //            }
 
 
-            /// TOP
-
+            /// TODO TOP
+            // Begin reading the input file character by character
             try {
                 inputStream = new FileReader(inFilepath);
 
@@ -88,8 +92,9 @@ public class Elevator {
                 int entryFl = 0;
                 int exitFl = 0;
                 int intCount =0;
-                while ((c = inputStream.read()) != -1) { // read and process one character
+                while ((c = inputStream.read()) != -1) {
                     char character = (char) c;
+                    // Account for / and # to ignore comment lines in input files
                     if (character=='/' || character=='#') {
                         try {
                             throw new NotValidInputException("[" + character + "] is not valid input.");
@@ -97,42 +102,43 @@ public class Elevator {
                             System.err.println(e.toString());
                         }
                     }
-//                    if (character==' ' || character=='\t') {
-//                        // do nothing
-//                    }
-                    else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5') && intCount==0) {
+                    // Begin building the person object by identifying the entry and exit floors
+                    else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5')
+                            && intCount==0) {
                         intCount++;
-                        entryFl = FileUtils.convertCharToInt(character);
-                    } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5' && intCount==1) ) {
-                        exitFl = FileUtils.convertCharToInt(character);
+                        entryFl = convertCharToInt(character);
+                    } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5')
+                            && intCount==1) {
+                        exitFl = convertCharToInt(character);
                     } else {
+                        // Build the name string by appending characters not found above
                         if (character != '\n' && intCount !=1 && character!=' ' && character!='\t') {
                             name = name + character;
                         }
                     }
 
-
+                    // If the character is a new liine then stop reading input text and begin processing
                     if (character == '\n') {
-                        System.out.println(" new line");
-                        // PRODCESSING STARTS FROM HERE
+                        // Create a Person object
                         Person person = new Person(name, entryFl, exitFl);
-                        System.out.println(person.toString());
                         try {
-                            if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1 || person.getEntryFloor() >5 || person.getExitFloor() < 1 || person.getExitFloor() > 5) {
-                                throw new NotValidInputException("Invalid floor values provided. Must be be < 1 and > 5");
+                            // Run validation on the Person object to ensure it has the right floor values
+                            if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1
+                                    || person.getEntryFloor() > 5 || person.getExitFloor() < 1
+                                    || person.getExitFloor() > 5) {
+                                throw new NotValidInputException("Invalid floor values provided. Must be be > 1 and < 5");
                             } else {
-                                processPerson(person, elevator, button, eMetrics, outFilepath);
+                                // Process the person
+                                processPerson(person, elevator, button, eMetrics, outFile);
                             }
-                            ////
-
                         } catch (NotValidInputException e) {
                             System.err.println(e.toString());
                         }
+                        // Resent key fields to begin processing a new line of input
                         name = "";
                         intCount = 0;
                         entryFl = 0;
                         exitFl = 0;
-//                        System.out.println(person.toString());
                     }
                 }
 
@@ -140,10 +146,7 @@ public class Elevator {
                 if (inputStream != null) inputStream.close();
             }
 
-
-
-
-            /// BOTTOM
+            /// TODO BOTTOM
 
             // TODO gotta get rid of sue
             finalUnload(elevator, button, outFile);

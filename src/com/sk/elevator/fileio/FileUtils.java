@@ -20,7 +20,7 @@ public class FileUtils {
      * @param c is a Char representing a character from input
      * @return int value.
      */
-    private static int convertCharToInt(char c) {
+    public static int convertCharToInt(char c) {
         if (c == '1') {
             return 1;
         }
@@ -73,6 +73,15 @@ public class FileUtils {
             }
         }
         return person;
+    }
+
+    public static boolean isCharValid(char character) throws NotValidInputException{
+        if (character=='/' || character=='#') {
+            throw new NotValidInputException("[" + character + "] is not valid input.");
+        } else {
+            return true;
+
+        }
     }
 
     /**
