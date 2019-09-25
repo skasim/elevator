@@ -1,5 +1,6 @@
 package com.sk.elevator.elevatorio;
 
+import com.sk.elevator.Elevator;
 import com.sk.elevator.button.Button;
 import com.sk.elevator.fileio.FileUtils;
 import com.sk.elevator.metrics.ElevatorMetrics;
@@ -30,9 +31,9 @@ public class ElevatorUtils {
                                   File outFile) {
         // check if max elevator capacity is reached. If true, print output to text file and increment appropriate
         // metric
-        if (elevator.maxCapacityReached()) {
+        if (maxCapacityReached(elevator)) {
             try {
-                writeFileLineByLine(outFile, "Elevator at max capacity! ["
+                writeFileLineByLine(outFile, "=xxx= Elevator at max capacity! ["
                         + person.getName() + "] was not able to get on at floor [" +
                         button.getCurrentFloor() + "]");
                 eMetrics.setTotalTurnaways(eMetrics.getTotalTurnaways() + 1);
@@ -47,7 +48,7 @@ public class ElevatorUtils {
             button.pushFloorRequestedButton(person.getExitFloor(), eMetrics);
             eMetrics.setTotalPeopleWhoRodeElevator(eMetrics.getTotalPeopleWhoRodeElevator() + 1);
             try {
-                FileUtils.writeFileLineByLine(outFile, "Getting on Floor[" +
+                FileUtils.writeFileLineByLine(outFile, "<==== Getting on Floor[" +
                         person.getEntryFloor() +"] is [" + person.getName() + "] and will get off at ["
                         + person.getExitFloor() + "]");
             } catch (IOException e) {
@@ -128,7 +129,7 @@ public class ElevatorUtils {
             // if a rider wants to get off on a floor then print to output and not push onto auxiliary stack
             if (person.getExitFloor() == currentFloor) {
                 try {
-                    FileUtils.writeFileLineByLine(outFile, "Exiting Floor[" +
+                    FileUtils.writeFileLineByLine(outFile, "====> Exiting Floor[" +
                             person.getExitFloor() +"] is [" + person.getName() + "] with [" + person.getExitTracker()
                             + "] temporary exits");
                 } catch (IOException e) {
@@ -141,7 +142,7 @@ public class ElevatorUtils {
                 // push the rider onto the auxiliary stack and capture action to output
                 auxStack.push(person);
                 try {
-                    FileUtils.writeFileLineByLine(outFile, "Temporarily Exiting Floor[" +
+                    FileUtils.writeFileLineByLine(outFile, "<===> Temporarily Exiting Floor[" +
                             currentFloor +"] is [" + person.getName() + "]");
                 } catch (IOException e) {
                     System.err.println(e.toString()); //
@@ -165,5 +166,12 @@ public class ElevatorUtils {
             Person person = auxStack.pop();
             elevator.push(person);
         }
+    }
+    /**
+     * Method to check if max capacity of the elevator is reached
+     * @return boolean
+     */
+    public static boolean maxCapacityReached(LinkedListStack elevator) {
+        return (elevator.size() >= 5);
     }
 }

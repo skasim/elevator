@@ -1,38 +1,51 @@
 package com.sk.elevator.metrics;
 
+/**
+ * A class representing the ElevatorMetrics object to track metrics pretraining to the elevator.
+ *
+ * @author Samra Kasim
+ */
 public class ElevatorMetrics {
 
-    int fl1ReqTracker;
-    int fl2ReqTracker;
-    int fl3ReqTracker;
-    int fl4ReqTracker;
-    int fl5ReqTracker;
+    private int fl1ReqTracker;
+    private int fl2ReqTracker;
+    private int fl3ReqTracker;
+    private int fl4ReqTracker;
+    private int fl5ReqTracker;
+    private int totalPeopleWhoWantedToRideElevator;
+    private int totalPeopleWhoRodeElevator;
+    private int totalTurnaways;     // represents people unable to ride elevator
+    private int totalEmptyElevator; // times when elevator was empty
 
-    int totalPeopleWhoWantedToRideElevator;
-    int totalPeopleWhoRodeElevator;
-    int totalTurnaways;
-    int totalEmptyElevator;
-
+    /**
+     * Constructor for the ElevatorMetrics job used in instantiating the object at the beginning of the simulation.
+     */
     public ElevatorMetrics() {
         this.fl1ReqTracker = 0;
         this.fl2ReqTracker = 0;
         this.fl3ReqTracker = 0;
         this.fl4ReqTracker = 0;
         this.fl5ReqTracker = 0;
-
         this.totalPeopleWhoWantedToRideElevator = 0;
         this.totalPeopleWhoRodeElevator = 0;
         this.totalTurnaways = 0;
         this.totalEmptyElevator= 0;
     }
 
-    public String toString() { //TODO clean up the overflow
-        return (" * Fl1 Total Requests:" + fl1ReqTracker + "\n * Fl2 Total Req:" + fl2ReqTracker + "\n * Fl3 Total Requests:" + fl3ReqTracker +
-                "\n * Fl4 Total Requests:" + fl4ReqTracker + "\n * Fl5 Total Requests:" + fl3ReqTracker + "\n * Total Riders:" +
-                totalPeopleWhoWantedToRideElevator + "\n * Total Rides:" + totalPeopleWhoRodeElevator +
-                "\n * Total Turnaways:" + totalTurnaways + "\n * Total Empty Elevator:" + totalEmptyElevator);
+    /**
+     * toString method to return the final key metrics
+     * @return String returns key metrics to output
+     */
+    public String toString() {
+        return (" * Floor 1 Total Requests: " + fl1ReqTracker + "\n * Floor 2 Total Requests: " + fl2ReqTracker +
+                "\n * Floor 3 Total Requests: " + fl3ReqTracker + "\n * Floor 4 Total Requests: " + fl4ReqTracker +
+                "\n * Floor 5 Total Requests: " + fl3ReqTracker + "\n * Total Riders: " +
+                totalPeopleWhoWantedToRideElevator + "\n * Total Rides: " + totalPeopleWhoRodeElevator +
+                "\n * Total Riders Unable to Ride: " + totalTurnaways +
+                "\n * Total Times Elevator was Empty: " + totalEmptyElevator);
     }
 
+    // Getters and Setters
     public int getFl1ReqTracker() {
         return fl1ReqTracker;
     }
