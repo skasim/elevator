@@ -2,11 +2,13 @@ package com.sk.elevator;
 
 import com.sk.elevator.button.Button;
 import com.sk.elevator.exceptions.NotValidInputException;
+import com.sk.elevator.fileio.FileUtils;
 import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.person.Person;
 import com.sk.elevator.stack.LinkedListStack;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -67,13 +69,81 @@ public class Elevator {
             } catch (IOException e) {
                 System.err.println(e.toString());
             }
-            while(scanner.hasNextLine()) {
+//            while(scanner.hasNextLine()) {
+//
+//                String line = scanner.nextLine();
+//                Person person = new Person();
+//                person = parseLineToCreatePerson(line, person);  // TODO this is where junk gets processed
+//                processPerson(person, elevator, button, eMetrics, outFile);
+//            }
 
-                String line = scanner.nextLine();
-                Person person = new Person();
-                person = parseLineToCreatePerson(line, person);  // TODO this is where junk gets processed
-                processPerson(person, elevator, button, eMetrics, outFile);
+
+            /// TOP
+
+            try {
+                inputStream = new FileReader(inFilepath);
+
+                int c;
+                String name = "";
+                int entryFl = 0;
+                int exitFl = 0;
+                int intCount =0;
+                while ((c = inputStream.read()) != -1) { // read and process one character
+                    char character = (char) c;
+                    if (character=='/' || character=='#') {
+                        try {
+                            throw new NotValidInputException("[" + character + "] is not valid input.");
+                        } catch (NotValidInputException e) {
+                            System.err.println(e.toString());
+                        }
+                    }
+//                    if (character==' ' || character=='\t') {
+//                        // do nothing
+//                    }
+                    else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5') && intCount==0) {
+                        intCount++;
+                        entryFl = FileUtils.convertCharToInt(character);
+                    } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5' && intCount==1) ) {
+                        exitFl = FileUtils.convertCharToInt(character);
+                    } else {
+                        if (character != '\n' && intCount !=1 && character!=' ' && character!='\t') {
+                            name = name + character;
+                        }
+                    }
+
+
+                    if (character == '\n') {
+                        System.out.println(" new line");
+                        // PRODCESSING STARTS FROM HERE
+                        Person person = new Person(name, entryFl, exitFl);
+                        System.out.println(person.toString());
+                        try {
+                            if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1 || person.getEntryFloor() >5 || person.getExitFloor() < 1 || person.getExitFloor() > 5) {
+                                throw new NotValidInputException("Invalid floor values provided. Must be be < 1 and > 5");
+                            } else {
+                                processPerson(person, elevator, button, eMetrics, outFilepath);
+                            }
+                            ////
+
+                        } catch (NotValidInputException e) {
+                            System.err.println(e.toString());
+                        }
+                        name = "";
+                        intCount = 0;
+                        entryFl = 0;
+                        exitFl = 0;
+//                        System.out.println(person.toString());
+                    }
+                }
+
+            } finally {
+                if (inputStream != null) inputStream.close();
             }
+
+
+
+
+            /// BOTTOM
 
             // TODO gotta get rid of sue
             finalUnload(elevator, button, outFile);
