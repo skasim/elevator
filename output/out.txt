@@ -44,19 +44,16 @@ Getting on Floor[1] is [Jim] and will get off at [3]
 Getting on Floor[1] is [Sal] and will get off at [3]
 Getting on Floor[1] is [Vic] and will get off at [4]
 Getting on Floor[1] is [Flo] and will get off at [5]
-Getting on Floor[1] is [Ada] and will get off at [5]
+Elevator at max capacity! [Ada] was not able to get on at floor [1]
 Elevator at max capacity! [Dina] was not able to get on at floor [2]
 Elevator at max capacity! [Bob] was not able to get on at floor [2]
-Temporarily Exiting Floor[3] is [Ada]
 Temporarily Exiting Floor[3] is [Flo]
 Temporarily Exiting Floor[3] is [Vic]
 Exiting Floor[3] is [Sal] with [0] temporary exits
 Exiting Floor[3] is [Jim] with [0] temporary exits
 Exiting Floor[3] is [Ann] with [0] temporary exits
-Temporarily Exiting Floor[4] is [Ada]
 Temporarily Exiting Floor[4] is [Flo]
 Exiting Floor[4] is [Vic] with [1] temporary exits
-Exiting Floor[5] is [Ada] with [2] temporary exits
 Exiting Floor[5] is [Flo] with [2] temporary exits
 Getting on Floor[5] is [Lee] and will get off at [3]
 Getting on Floor[4] is [Wil] and will get off at [3]
@@ -72,8 +69,7 @@ Getting on Floor[1] is [Lou] and will get off at [3]
 Getting on Floor[1] is [Yul] and will get off at [4]
 Getting on Floor[1] is [Al] and will get off at [4]
 Getting on Floor[2] is [Lew] and will get off at [5]
-Getting on Floor[2] is [Nan] and will get off at [3]
-Exiting Floor[3] is [Nan] with [0] temporary exits
+Elevator at max capacity! [Nan] was not able to get on at floor [2]
 Temporarily Exiting Floor[3] is [Lew]
 Temporarily Exiting Floor[3] is [Al]
 Temporarily Exiting Floor[3] is [Yul]
@@ -81,14 +77,12 @@ Exiting Floor[3] is [Lou] with [0] temporary exits
 Exiting Floor[3] is [Abe] with [0] temporary exits
 Getting on Floor[3] is [Ina] and will get off at [4]
 Getting on Floor[3] is [Bif] and will get off at [5]
-Getting on Floor[3] is [Moe] and will get off at [5]
-Temporarily Exiting Floor[4] is [Moe]
+Elevator at max capacity! [Moe] was not able to get on at floor [3]
 Temporarily Exiting Floor[4] is [Bif]
 Exiting Floor[4] is [Ina] with [0] temporary exits
 Temporarily Exiting Floor[4] is [Lew]
 Exiting Floor[4] is [Al] with [1] temporary exits
 Exiting Floor[4] is [Yul] with [1] temporary exits
-Exiting Floor[5] is [Moe] with [1] temporary exits
 Exiting Floor[5] is [Bif] with [1] temporary exits
 Exiting Floor[5] is [Lew] with [2] temporary exits
 Getting on Floor[5] is [Jan] and will get off at [1]
@@ -140,10 +134,10 @@ End Elevator Simulation.
 
  * Fl1 Total Requests:8
  * Fl2 Total Req:6
- * Fl3 Total Requests:13
+ * Fl3 Total Requests:12
  * Fl4 Total Requests:9
- * Fl5 Total Requests:13
+ * Fl5 Total Requests:12
  * Total Riders:49
- * Total Rides:47
- * Total Turnaways:2
+ * Total Rides:44
+ * Total Turnaways:5
  * Total Empty Elevator:3

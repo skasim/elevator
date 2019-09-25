@@ -2,8 +2,6 @@ package com.sk.elevator.stack;
 
 import com.sk.elevator.person.Person;
 
-import java.util.List;
-
 public class LinkedListStack {
 
     private SNode top;
@@ -44,7 +42,7 @@ public class LinkedListStack {
     }
 
     public boolean maxCapacityReached() {
-        return  (this.size > 5);
+        return  (this.size >= 5);
     }
 
     // TODO Delete this
