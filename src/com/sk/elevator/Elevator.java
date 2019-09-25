@@ -94,7 +94,7 @@ public class Elevator {
                 int intCount =0;
                 while ((c = inputStream.read()) != -1) {
                     char character = (char) c;
-                    // Account for / and # to ignore comment lines in input files
+                    // Account for / and # characters to ignore comment lines in input files
                     if (character=='/' || character=='#') {
                         try {
                             throw new NotValidInputException("[" + character + "] is not valid input.");
@@ -123,8 +123,7 @@ public class Elevator {
                         Person person = new Person(name, entryFl, exitFl);
                         try {
                             // Run validation on the Person object to ensure it has the right floor values
-                            if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1
-                                    || person.getEntryFloor() > 5 || person.getExitFloor() < 1
+                            if (person.getEntryFloor() < 1 || person.getEntryFloor() > 5 || person.getExitFloor() < 1
                                     || person.getExitFloor() > 5) {
                                 throw new NotValidInputException("Invalid floor values provided. Must be be > 1 and < 5");
                             } else {
