@@ -68,7 +68,8 @@ public class ElevatorUtils {
      * @param button: Button object representing the button panel in an elevator.
      * @param outFile: String representing the path to the output file.
      */
-    public static void finalUnload(LinkedListStack elevator, Button button, File outFile) {
+    public static void finalUnload(LinkedListStack elevator, Button button, ElevatorMetrics eMetrics,
+                                   File outFile) {
         // Only perform this method if the elevator is not empty
         if (!elevator.isEmpty()) {
             LinkedListStack auxStack = new LinkedListStack();
@@ -91,7 +92,7 @@ public class ElevatorUtils {
             while(button.getMaxFloor() > button.getCurrentFloor() && !elevator.isEmpty()) {
                 button.setCurrentFloor(button.getCurrentFloor()+1);
                 if (button.returnNumberOfFloorRequests(button.getCurrentFloor()) > 0) {
-                    unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
+                    unloadPeople(button.getCurrentFloor(), elevator, button, eMetrics, outFile);
                 }
             }
             // Once max floor is reached, begin final descent and drop riders off at requested floors
@@ -99,7 +100,7 @@ public class ElevatorUtils {
             while (button.getCurrentFloor() !=1 || !elevator.isEmpty()) {
                 button.setCurrentFloor(button.getCurrentFloor()-1);
                 if (button.returnNumberOfFloorRequests(button.getCurrentFloor()) > 0) {
-                    unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
+                    unloadPeople(button.getCurrentFloor(), elevator, button, eMetrics, outFile);
                 }
             }
         }
@@ -116,7 +117,8 @@ public class ElevatorUtils {
      * @param button: Button object representing the button panel in an elevator.
      * @param outFile: File object representing the output file.
      */
-    public static void unloadPeople(int currentFloor, LinkedListStack elevator, Button button, File outFile) {
+    public static void unloadPeople(int currentFloor, LinkedListStack elevator, Button button, ElevatorMetrics eMetrics,
+                                    File outFile) {
 
         LinkedListStack auxStack = new LinkedListStack();
         int numOfPeopleToUnload = button.returnNumberOfFloorRequests(currentFloor);
@@ -141,6 +143,7 @@ public class ElevatorUtils {
                 person.setExitTracker(person.getExitTracker()+1);
                 // Push the rider onto the auxiliary stack and capture action to output
                 auxStack.push(person);
+                eMetrics.setTotalTemporaryExits(eMetrics.getTotalTemporaryExits() + 1);
                 try {
                     FileUtils.writeFileLineByLine(outFile, "<===> Temporarily Exiting Floor[" +
                             currentFloor +"] is [" + person.getName() + "]");

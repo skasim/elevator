@@ -16,6 +16,7 @@ public class ElevatorMetrics {
     private int totalPeopleWhoRodeElevator;
     private int totalTurnaways;     // Represents people unable to ride elevator
     private int totalEmptyElevator; // Times when elevator was empty
+    private int totalTemporaryExits;
 
     /**
      * Constructor for the ElevatorMetrics job used in instantiating the object at the beginning of the simulation.
@@ -29,7 +30,8 @@ public class ElevatorMetrics {
         this.totalPeopleWhoWantedToRideElevator = 0;
         this.totalPeopleWhoRodeElevator = 0;
         this.totalTurnaways = 0;
-        this.totalEmptyElevator= 0;
+        this.totalEmptyElevator = 0;
+        this.totalTemporaryExits = 0;
     }
 
     /**
@@ -37,12 +39,16 @@ public class ElevatorMetrics {
      * @return String returns key metrics to output
      */
     public String toString() {
-        return (" * Floor 1 Total Requests: " + fl1ReqTracker + "\n * Floor 2 Total Requests: " + fl2ReqTracker +
-                "\n * Floor 3 Total Requests: " + fl3ReqTracker + "\n * Floor 4 Total Requests: " + fl4ReqTracker +
-                "\n * Floor 5 Total Requests: " + fl3ReqTracker + "\n * Total Riders: " +
-                totalPeopleWhoWantedToRideElevator + "\n * Total Rides: " + totalPeopleWhoRodeElevator +
+        return (" * Floor 1 Total Requests: " + fl1ReqTracker +
+                "\n * Floor 2 Total Requests: " + fl2ReqTracker +
+                "\n * Floor 3 Total Requests: " + fl3ReqTracker +
+                "\n * Floor 4 Total Requests: " + fl4ReqTracker +
+                "\n * Floor 5 Total Requests: " + fl3ReqTracker +
+                "\n * Total Riders: " + totalPeopleWhoWantedToRideElevator +
+                "\n * Total Rides: " + totalPeopleWhoRodeElevator +
                 "\n * Total Riders Unable to Ride: " + totalTurnaways +
-                "\n * Total Times Elevator was Empty: " + totalEmptyElevator);
+                "\n * Total Times Elevator was Empty: " + totalEmptyElevator +
+                "\n * Total Temporary Exits: " + totalTemporaryExits);
     }
 
     // Getters and Setters
@@ -82,6 +88,10 @@ public class ElevatorMetrics {
         return totalTurnaways;
     }
 
+    public int getTotalTemporaryExits() {
+        return totalTemporaryExits;
+    }
+
     public void setFl1ReqTracker(int fl1ReqTracker) {
         this.fl1ReqTracker = fl1ReqTracker;
     }
@@ -116,5 +126,9 @@ public class ElevatorMetrics {
 
     public void setTotalTurnaways(int totalTurnaways) {
         this.totalTurnaways = totalTurnaways;
+    }
+
+    public void setTotalTemporaryExits(int totalTemporaryExits) {
+        this.totalTemporaryExits = totalTemporaryExits;
     }
 }

@@ -2,7 +2,6 @@ package com.sk.elevator;
 
 import com.sk.elevator.button.Button;
 import com.sk.elevator.exceptions.NotValidInputException;
-import com.sk.elevator.fileio.FileUtils;
 import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.person.Person;
 import com.sk.elevator.stack.LinkedListStack;
@@ -14,6 +13,7 @@ import java.util.Scanner;
 
 import static com.sk.elevator.elevatorio.ElevatorUtils.*;
 import static com.sk.elevator.fileio.FileUtils.*;
+import static com.sk.elevator.person.Person.processPerson;
 
 /**
  * Lab 1: Elevator Simulation
@@ -91,7 +91,7 @@ public class Elevator {
                 String name = "";
                 int entryFl = 0;
                 int exitFl = 0;
-                int intCount =0;
+                int intCount = 0;
                 while ((c = inputStream.read()) != -1) {
                     char character = (char) c;
                     // Account for / and # characters to ignore comment lines in input files
@@ -133,7 +133,7 @@ public class Elevator {
                         } catch (NotValidInputException e) {
                             System.err.println(e.toString());
                         }
-                        // Resent key fields to begin processing a new line of input
+                        // Reset key variables to begin processing a new line of input
                         name = "";
                         intCount = 0;
                         entryFl = 0;
@@ -148,7 +148,8 @@ public class Elevator {
             /// TODO BOTTOM
 
             // TODO gotta get rid of sue
-            finalUnload(elevator, button, outFile);
+            // Conduct a final unload of riders left in the elevator once the simulation comes to an end
+            finalUnload(elevator, button, eMetrics, outFile);
 
             try {
                 writeFileLineByLine(outFile, "\nEnd Elevator Simulation.");
@@ -169,74 +170,6 @@ public class Elevator {
         } catch (IOException e) {
             System.err.println(e.toString());
         }
-    }
-    //TODO FINISH THIS
-    /**
-     * Method handles logic for processing a Person object. It enables riders to be loaded onto the elevator,
-     * offloaded when it's their requested floor, and moves elevator to next floor (based on either the floor requests
-     * of the riders in the elevator or the entry floor of the next person waiting determined by whichever is nearer.
-     * @param person: Person object representing the person to load onto the elevator.
-     * @param elevator: Elevator object representing the elevator.
-     * @param button: Button object representing the button panel in an elevator.
-     * @param eMetrics: ElevatorMetrics object representing overall metrics tracked for the elevator.
-     * @param outFile: File object representing the output file.
-     */
-    private static void processPerson(Person person, LinkedListStack elevator, Button button, ElevatorMetrics eMetrics,
-                                     File outFile) {
-        // TODO buff read here instead
-        // Check if person object is null. if it is then exit method
-        if (person != null) {
-            // If person object is not null check if valid floors are provided. If not, throw an error and exit method
-            try {
-
-                if (person.getEntryFloor() == 0 || person.getExitFloor() == 0 || person.getEntryFloor() < 1 ||
-                        person.getEntryFloor() > 5 || person.getExitFloor() < 1 || person.getExitFloor() > 5) {
-                    throw new NotValidInputException("Floor provided in input is not valid must be between " +
-                            "1 and 5.");
-                }
-                // If floors are valid and the floor the next rider is getting on are the same then load rider
-                // and increment the necessary metrics
-                else {
-                    eMetrics.setTotalPeopleWhoWantedToRideElevator(
-                            eMetrics.getTotalPeopleWhoWantedToRideElevator() + 1);
-
-                    if (button.getCurrentFloor() == person.getEntryFloor()) {
-                        loadPerson(person, elevator, button, eMetrics, outFile);
-                    }
-                    // If the floor for the rider is different (this accounts for possibly needing to skip floors)
-                    // then determine the next floor and check if elevator is not empty. If elevator is not empty,
-                    // unload riders if this is the floor they need to get off on.
-                    // Continue to do this until you are at the floor that the next rider wants to get on
-                    // and then load that person
-                    else {
-                        button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
-
-                        while (person.getEntryFloor() != button.getCurrentFloor()) {
-
-                            if (!elevator.isEmpty()) {
-                                unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
-                            }
-
-                            else {
-                                eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
-                            }
-                            button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
-                        }
-
-                        if (!elevator.isEmpty()) {
-                            unloadPeople(button.getCurrentFloor(), elevator, button, outFile);
-                        }
-
-                        else {
-                            eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
-                        }
-                        loadPerson(person, elevator, button, eMetrics, outFile);
-                    }
-                }
-            } catch (NotValidInputException e) {
-                System.err.println(e.toString());
-            }
-        } // TODO EO of buff reader
     }
 }
 
