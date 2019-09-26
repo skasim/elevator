@@ -69,27 +69,4 @@ public class LinkedListStack {
     public int size() {
         return this.size;
     }
-//TODO clean up
-//    /**
-//     * Method to check if max capacity of the elevator is reached
-//     * @return
-//     */
-//    public boolean maxCapacityReached() {
-//        return (this.size >= 5);
-//    }
-
-    // TODO Delete this
-    public void display(){
-        try {
-            SNode temp = top;
-            int count = this.size;
-            while (count >= 0) {
-                System.out.printf(temp.data.toString() + " ==> ");
-                temp = temp.next;
-                count--;
-            }
-        } catch (NullPointerException e) {
-            System.out.println("null-node");
-        }
-    }
 }

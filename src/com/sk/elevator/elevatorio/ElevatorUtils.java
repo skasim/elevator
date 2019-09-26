@@ -1,6 +1,5 @@
 package com.sk.elevator.elevatorio;
 
-import com.sk.elevator.Elevator;
 import com.sk.elevator.button.Button;
 import com.sk.elevator.fileio.FileUtils;
 import com.sk.elevator.metrics.ElevatorMetrics;
@@ -13,7 +12,10 @@ import java.io.IOException;
 import static com.sk.elevator.fileio.FileUtils.writeFileLineByLine;
 
 /**
- * Class featuring utility methods to assist in performing tasks related to loading riders on and off an elevator.
+ * Class featuring utility methods to assist in performing tasks related to loading riders on and off an elevator. The
+ * purpose of this class is to provide key methods for loading a person onto the elevator, off loading people form the
+ * elevator, checking if max capacity of the elevator is reached, and doing a final unload once the input file has
+ * been fully read. Error handling and writing output are handled in this class to prevent cluttering in the main class.
  *
  * @author Samra Kasim
  */
@@ -31,6 +33,15 @@ public class ElevatorUtils {
                                   File outFile) {
         // Check if max elevator capacity is reached. If true, print output to text file and increment appropriate
         // metric
+        if (elevator.isEmpty()) {
+            eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
+            try {
+                writeFileLineByLine(outFile, "=ooo= Elevator is empty at floor [" +
+                        button.getCurrentFloor() + "]");
+            } catch (IOException e) {
+                System.err.println(e.toString());
+            }
+        }
         if (maxCapacityReached(elevator)) {
             try {
                 writeFileLineByLine(outFile, "=xxx= Elevator at max capacity! ["
@@ -174,7 +185,7 @@ public class ElevatorUtils {
      * Method to check if max capacity of the elevator is reached
      * @return boolean
      */
-    public static boolean maxCapacityReached(LinkedListStack elevator) {
+    private static boolean maxCapacityReached(LinkedListStack elevator) {
         return (elevator.size() >= 5);
     }
 }

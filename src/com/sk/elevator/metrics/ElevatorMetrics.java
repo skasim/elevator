@@ -1,7 +1,12 @@
 package com.sk.elevator.metrics;
 
 /**
- * A class representing the ElevatorMetrics object to track metrics pretraining to the elevator.
+ * A class representing the ElevatorMetrics object to track metrics pretaining to the elevator. These metrics are
+ * printed to the final output at the end of program execution. The metrics track key features of an elevator such as
+ * the number of floors requested, the number of times elevator was empty, total people who weren't able to ride
+ * elevator due to max capacity, total people who rode the elevator, etc. These methods provide an overall picture of
+ * the functioning of the elevator during the simulation and reveal any areas prime for improvement. A simple object
+ * class is used to conduct this metric gathering and each key input is incremented over time.
  *
  * @author Samra Kasim
  */

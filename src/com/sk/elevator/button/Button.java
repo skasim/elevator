@@ -5,7 +5,9 @@ import com.sk.elevator.metrics.ElevatorMetrics;
 /**
  * Class creates a Button object, which functions similar to the button panel in an elevator. This object tracks
  * for which floor a rider presses a button, which direction the elevator is traveling inm and provides methods that
- * facilitate determining, which floor to go to next.
+ * facilitate determining, which floor to go to next. It's key method include determineNextFloor, which is used to
+ * identify the next floor the elevator will move to and pushFloorRequestButton, which mimics the pressing of buttons
+ * by riders as they get on the elevator and captures each riders desired exit floor.
  *
  * @author Samra Kasim
  */
@@ -140,13 +142,6 @@ public class Button {
                         haveNextFloor = true;
                     }
                 }
-//                if(returnNumberOfFloorRequests(nextFloor) == 0 && nextFloor != nextPersonEntryFloor) {
-////                    nextFloor = (goingUp) ? nextFloor + 1 : nextFloor - 1; //TODO clean up
-//                } else {
-//                    if (nextFloor != currentFloor) {
-//                        haveNextFloor = true;
-//                    }
-//                }
             } else {
                 nextFloor--;    // If the elevator is going down decrement the next floor by 1
                 if (nextFloor == 1) goingUp = true;     // If nextFloor is 1, then switch goingUp boolean to true
@@ -158,22 +153,12 @@ public class Button {
                         haveNextFloor = true;
                     }
                 }
-//                if (returnNumberOfFloorRequests(nextFloor) == 0 && nextFloor != nextPersonEntryFloor) {
-////                    nextFloor = (goingUp) ? nextFloor + 1 : nextFloor - 1; // TODO clean up
-//                }
-//                else {
-//                    if (nextFloor != currentFloor) {
-//                        haveNextFloor = true;
-//                    }
-//                }
             }
 
         }
 
         return nextFloor;
     }
-
-    // TODO fix this case statement's return
 
     /**
      * Helper method to return the number of floor requests made based on the floor provided.

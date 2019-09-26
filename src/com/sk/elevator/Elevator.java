@@ -1,13 +1,11 @@
 package com.sk.elevator;
 
 import com.sk.elevator.button.Button;
-import com.sk.elevator.exceptions.NotValidInputException;
 import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.person.Person;
 import com.sk.elevator.stack.LinkedListStack;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -19,17 +17,21 @@ import static com.sk.elevator.person.Person.processPerson;
  * Lab 1: Elevator Simulation
  * This program simulates the functioning of an elevator in a building with floors one through five. The elevator is
  * narrow so individuals can only be loaded on and off in the first in first out manner of a stack. The purpose
- * of this program is to demonstrate knowledge of utilizing a stack class to solve such a problem as well as using logic
- * to determine how to move the elevator and when and how to load and offload riders. The program is limited to using
- * Java primitives in it's execution exception in the case of File input out.
+ * of this program is to demonstrate knowledge of utilizing a stack class to solve such a problem as well as using
+ * algorithm logic to determine how to move the elevator and when and how to load and offload riders. The program is
+ * limited to using Java primitives in it's execution except in the case of File input out. The primary driver
+ * of this program is the determineNextFloor method, which is used to identify, which floor the elevator should travel
+ * to next. A naive implementation would stop the floor at every floor during the elevator's ascent and descent.
+ * However, in this program, the elevator "smartly" determines, which floor to go to next after analyzing the
+ * floor requests of riders in the elevator, the entry floor of the person waiting to get on the elevator, and the
+ * direction the elevator is moving.
  *
- * To execute the program, read the README.
+ * To execute the program, refer to the README.
  *
  * @author Samra Kasim
  */
 public class Elevator {
     // TODO write a report
-    // TODO java doc all over
     // TODO remove sys.out and put in sys.errors
     /**
      * Main class to enter the program. Input and output filepaths are provided as arguments in the command line.
@@ -45,13 +47,12 @@ public class Elevator {
      * @param args Takes two command line arguments, the input filepath and the output filepath
      */
     public static void main(String[] args) {
-
+        // Check if input and output filepaths are provided. If not, exit program execution.
         if (args.length != 2) {
             System.err.println("Input and output file paths must be provided to run this simulation. Exiting now.");
             System.exit(1);
         }
         // Variables related to program IO
-        FileReader inputStream = null;
         String inFilepath = args[0];
         String outFilepath = args[1];
         File outFile = new File(outFilepath);
@@ -67,98 +68,28 @@ public class Elevator {
             try {
                 writeFileLineByLine(outFile, "########################################\n");
                 writeFileLineByLine(outFile, "#    ABC Corp. Elevator Simulation.    #\n");
+                writeFileLineByLine(outFile, "#    By: Samra Kasim                   #\n");
                 writeFileLineByLine(outFile, "########################################\n\n");
+                writeFileLineByLine(outFile, "\nLEGEND:\n<==== Rider getting on elevator \n====> Rider " +
+                        "getting off elevator \n<===> Rider's temporary Exit \n=xxx= Rider unable to get on because" +
+                        " max capacity reached \n=ooo= Elevator is empty");
                 writeFileLineByLine(outFile, "\n Begin Elevator Simulation.\n");
-
             } catch (IOException e) {
                 System.err.println(e.toString());
             }
-//            while(scanner.hasNextLine()) {
-//
-//                String line = scanner.nextLine();
-//                Person person = new Person();
-//                person = parseLineToCreatePerson(line, person);  // TODO this is where junk gets processed
-//                processPerson(person, elevator, button, eMetrics, outFile);
-//            }
 
-
-            /// TODO TOP
-            // Begin reading the input file character by character
-            try {
-                inputStream = new FileReader(inFilepath);
-
-                int c;
-                String name = "";
-                int entryFl = 0;
-                int exitFl = 0;
-                int intCount = 0;
-                while ((c = inputStream.read()) != -1) {
-                    char character = (char) c;
-                    // Account for / and # characters to ignore comment lines in input files
-                    if (character=='/' || character=='#') {
-                        try {
-                            throw new NotValidInputException("[" + character + "] is not valid input.");
-                        } catch (NotValidInputException e) {
-                            System.err.println(e.toString());
-                        }
-                    }
-                    // Begin building the person object by identifying the entry and exit floors
-                    else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5')
-                            && intCount==0) {
-                        intCount++;
-                        entryFl = convertCharToInt(character);
-                    } else if ((character=='1' || character =='2' || character =='3' || character=='4' || character=='5')
-                            && intCount==1) {
-                        exitFl = convertCharToInt(character);
-                    } else {
-                        // Build the name string by appending characters not found above
-                        if (character != '\n' && intCount !=1 && character!=' ' && character!='\t') {
-                            name = name + character;
-                        }
-                    }
-
-                    // If the character is a new liine then stop reading input text and begin processing
-                    if (character == '\n') {
-                        // Create a Person object
-                        Person person = new Person(name, entryFl, exitFl);
-                        try {
-                            // Run validation on the Person object to ensure it has the right floor values
-                            if (person.getEntryFloor() < 1 || person.getEntryFloor() > 5 || person.getExitFloor() < 1
-                                    || person.getExitFloor() > 5) {
-                                throw new NotValidInputException("Invalid floor values provided. Must be be > 1 and < 5");
-                            } else {
-                                // Process the person
-                                processPerson(person, elevator, button, eMetrics, outFile);
-                            }
-                        } catch (NotValidInputException e) {
-                            System.err.println(e.toString());
-                        }
-                        // Reset key variables to begin processing a new line of input
-                        name = "";
-                        intCount = 0;
-                        entryFl = 0;
-                        exitFl = 0;
-                    }
-                }
-
-            } finally {
-                if (inputStream != null) inputStream.close();
+            while(scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                Person person = new Person();
+                person = parseLineToCreatePerson(line, person);
+                processPerson(person, elevator, button, eMetrics, outFile);
             }
-
-            /// TODO BOTTOM
-
-            // TODO gotta get rid of sue
             // Conduct a final unload of riders left in the elevator once the simulation comes to an end
             finalUnload(elevator, button, eMetrics, outFile);
 
             try {
                 writeFileLineByLine(outFile, "\nEnd Elevator Simulation.");
-            } catch (IOException e) {
-                System.err.println(e.toString());
-            }
-            System.out.println(eMetrics.toString()); //TODO remove
-
-            try {
+                System.out.println(eMetrics.toString()); //TODO remove
                 writeFileLineByLine(outFile, "\n########################################\n");
                 writeFileLineByLine(outFile, "#             Metrics Report           #\n");
                 writeFileLineByLine(outFile, "########################################\n\n");
@@ -172,4 +103,3 @@ public class Elevator {
         }
     }
 }
-

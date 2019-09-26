@@ -9,7 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * A class representing utility methods to facilitate reading of input file and writing to output file.
+ * A class representing utility methods to facilitate reading of input file and writing to output file. Since the input
+ * is read character by character, there are some unique helperr methods that were needed such as convertingCharToInt to
+ * return the integer representation of a character (ex., int 5 is returned for char 53). The building of the Person
+ * object is also handled in this class. Finally, the class also includes methods responsible for writing to output file.
  *
  * @author Samra Kasim
  */
@@ -75,15 +78,6 @@ public class FileUtils {
         return person;
     }
 
-    public static boolean isCharValid(char character) throws NotValidInputException{
-        if (character=='/' || character=='#') {
-            throw new NotValidInputException("[" + character + "] is not valid input.");
-        } else {
-            return true;
-
-        }
-    }
-
     /**
      * Helper method to take a File object representing the output file and return a BufferedWrite object.
      * @param outFile: String value representing the output file
@@ -119,4 +113,3 @@ public class FileUtils {
         writer.close();
     }
 }
-

@@ -6,21 +6,27 @@ import com.sk.elevator.metrics.ElevatorMetrics;
 import com.sk.elevator.stack.LinkedListStack;
 
 import java.io.File;
+import java.io.IOException;
 
 import static com.sk.elevator.elevatorio.ElevatorUtils.loadPerson;
 import static com.sk.elevator.elevatorio.ElevatorUtils.unloadPeople;
+import static com.sk.elevator.fileio.FileUtils.writeFileLineByLine;
 
 /**
- * Person object representing the rider.
+ * Class is a Person object representing the rider. It captures key features important to a rider that are then used
+ * by other modules throughout program execution, such as the rider's name, entry floor, exit floor, and finally a
+ * tracker to for the number of temporary exits a rider had to make. The class contains the processPerson method, which
+ * contains the logic and calls to other method to execute the processing of person from the time the Person object
+ * is created.
  *
  * @author Samra Kasim
  */
 public class Person {
 
-    String name;
-    int entryFloor;
-    int exitFloor;
-    int exitTracker;    // Track the number of temporary exits made by the rider
+    private String name;
+    private int entryFloor;
+    private int exitFloor;
+    private int exitTracker;    // Track the number of temporary exits made by the rider
 
     /**
      * Constructor to instantiate object with no parameters provided.
@@ -54,7 +60,6 @@ public class Person {
      */
     public static void processPerson(Person person, LinkedListStack elevator, Button button, ElevatorMetrics eMetrics,
                                       File outFile) {
-        // TODO buff read here instead
         // Check if person object is null. if it is then exit method
         if (person != null) {
             // If person object is not null check if valid floors are provided. If not, throw an error and exit method
@@ -90,6 +95,8 @@ public class Person {
 
                             else {
                                 eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
+                                writeFileLineByLine(outFile, "=ooo= Elevator is empty at floor [" +
+                                        button.getCurrentFloor() + "]");
                             }
                             button.setCurrentFloor(button.determineNextFloor(person.getEntryFloor()));
                         }
@@ -100,14 +107,16 @@ public class Person {
 
                         else {
                             eMetrics.setTotalEmptyElevator(eMetrics.getTotalEmptyElevator() + 1);
+                            writeFileLineByLine(outFile, "=ooo= Elevator is empty at floor [" +
+                                    button.getCurrentFloor() + "]");
                         }
                         loadPerson(person, elevator, button, eMetrics, outFile);
                     }
                 }
-            } catch (NotValidInputException e) {
+            } catch (NotValidInputException | IOException e) {
                 System.err.println(e.toString());
             }
-        } // TODO EO of buff reader
+        }
     }
 
     /**
