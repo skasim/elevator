@@ -78,6 +78,7 @@ public class Elevator {
 
             while(scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+                writeFileLineByLine(outFile, "Echo input: " + line);
                 Person person = new Person();
                 person = parseLineToCreatePerson(line, person);
                 processPerson(person, elevator, button, eMetrics, outFile);
