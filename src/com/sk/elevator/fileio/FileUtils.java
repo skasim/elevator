@@ -7,7 +7,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * A class representing utility methods to facilitate reading of input file and writing to output file. Since the input
@@ -24,7 +23,7 @@ public class FileUtils {
      * @param c is a Char representing a character from input
      * @return int value.
      */
-    public static int convertCharToInt(char c) {
+    private static int convertCharToInt(char c) {
         if (c == '1') {
             return 1;
         }
