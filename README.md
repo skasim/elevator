@@ -11,4 +11,4 @@
 * If providing comments in the input file, make sure they are preceded by `//`.
 * The write to output file appends to the last entry, so if generating a new file, delete the older version or update the output filename.
 * The two input files are provided in the `input` directory. They are `elevator_input_data.txt` and `student_input_data.txt`.
-* The output files are in the `output` directory.
+* The output files are in the `output` directory. They are `elevator_input_data_out.txt` and `student_input_data_out.txt`.
