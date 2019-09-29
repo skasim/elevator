@@ -232,9 +232,7 @@ public class Button {
         this.fl4 = fl4;
     }
 
-    public void setFl5(int fl5) {
-        this.fl5 = fl5;
-    }
+    public void setFl5(int fl5) { this.fl5 = fl5; }
 
     public void setGoingUp(boolean goingUp) {
         this.goingUp = goingUp;

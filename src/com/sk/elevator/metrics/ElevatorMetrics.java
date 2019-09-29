@@ -48,9 +48,9 @@ public class ElevatorMetrics {
                 "\n * Floor 2 Total Requests: " + fl2ReqTracker +
                 "\n * Floor 3 Total Requests: " + fl3ReqTracker +
                 "\n * Floor 4 Total Requests: " + fl4ReqTracker +
-                "\n * Floor 5 Total Requests: " + fl3ReqTracker +
-                "\n * Total Riders: " + totalPeopleWhoWantedToRideElevator +
-                "\n * Total Rides: " + totalPeopleWhoRodeElevator +
+                "\n * Floor 5 Total Requests: " + fl5ReqTracker +
+                "\n * Total Riders Seeking to Use Elevators: " + totalPeopleWhoWantedToRideElevator +
+                "\n * Total Riders Able to Use Elevators: " + totalPeopleWhoRodeElevator +
                 "\n * Total Riders Unable to Ride: " + totalTurnaways +
                 "\n * Total Times Elevator was Empty: " + totalEmptyElevator +
                 "\n * Total Temporary Exits: " + totalTemporaryExits);

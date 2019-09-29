@@ -1,5 +1,5 @@
 // Samra Kasim
-// Student generated data for Lab 1
+// Student generated data for Lab 1. Purposefully contains bad data to demonstrate error handling
 // Name Floor entered Floor exited
 Samra 1 4
 Angel 1 5

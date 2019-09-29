@@ -1,7 +1,8 @@
 package com.sk.elevator.exceptions;
 
 /**
- * Exception class to handle invalid inputs provided via text files for this simulation project.
+ * Exception class to handle invalid inputs provided via text files for this simulation project. These are input
+ * rows that are comments and exit and entry floors greater than 5 or less than 1.
  *
  * @author Samra Kasim
  */

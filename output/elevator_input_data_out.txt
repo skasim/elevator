@@ -3,12 +3,22 @@
 
 #    ABC Corp. Elevator Simulation.    #
 
+#    By: Samra Kasim                   #
+
 ########################################
 
 
 
+LEGEND:
+<==== Rider getting on elevator 
+====> Rider getting off elevator 
+<===> Rider's temporary Exit 
+=xxx= Rider unable to get on because max capacity reached 
+=ooo= Elevator is empty
+
  Begin Elevator Simulation.
 
+=ooo= Elevator is empty at floor [1]
 <==== Getting on Floor[1] is [Eli] and will get off at [5]
 <==== Getting on Floor[1] is [Babs] and will get off at [3]
 <==== Getting on Floor[1] is [Fred] and will get off at [2]
@@ -27,6 +37,7 @@
 ====> Exiting Floor[4] is [Tom] with [2] temporary exits
 ====> Exiting Floor[5] is [Barb] with [1] temporary exits
 ====> Exiting Floor[5] is [Eli] with [0] temporary exits
+=ooo= Elevator is empty at floor [5]
 <==== Getting on Floor[5] is [Tina] and will get off at [2]
 <==== Getting on Floor[5] is [Joe] and will get off at [1]
 <==== Getting on Floor[4] is [Hal] and will get off at [2]
@@ -39,6 +50,7 @@
 ====> Exiting Floor[1] is [Deb] with [0] temporary exits
 ====> Exiting Floor[1] is [Ted] with [1] temporary exits
 ====> Exiting Floor[1] is [Joe] with [1] temporary exits
+=ooo= Elevator is empty at floor [1]
 <==== Getting on Floor[1] is [Ann] and will get off at [3]
 <==== Getting on Floor[1] is [Jim] and will get off at [3]
 <==== Getting on Floor[1] is [Sal] and will get off at [3]
@@ -55,6 +67,7 @@
 <===> Temporarily Exiting Floor[4] is [Flo]
 ====> Exiting Floor[4] is [Vic] with [1] temporary exits
 ====> Exiting Floor[5] is [Flo] with [2] temporary exits
+=ooo= Elevator is empty at floor [5]
 <==== Getting on Floor[5] is [Lee] and will get off at [3]
 <==== Getting on Floor[4] is [Wil] and will get off at [3]
 <==== Getting on Floor[4] is [Gia] and will get off at [1]
@@ -64,6 +77,7 @@
 <==== Getting on Floor[3] is [Isa] and will get off at [1]
 ====> Exiting Floor[1] is [Isa] with [0] temporary exits
 ====> Exiting Floor[1] is [Gia] with [1] temporary exits
+=ooo= Elevator is empty at floor [1]
 <==== Getting on Floor[1] is [Abe] and will get off at [3]
 <==== Getting on Floor[1] is [Lou] and will get off at [3]
 <==== Getting on Floor[1] is [Yul] and will get off at [4]
@@ -85,8 +99,10 @@
 ====> Exiting Floor[4] is [Yul] with [1] temporary exits
 ====> Exiting Floor[5] is [Bif] with [1] temporary exits
 ====> Exiting Floor[5] is [Lew] with [2] temporary exits
+=ooo= Elevator is empty at floor [5]
 <==== Getting on Floor[5] is [Jan] and will get off at [1]
 ====> Exiting Floor[1] is [Jan] with [0] temporary exits
+=ooo= Elevator is empty at floor [1]
 <==== Getting on Floor[1] is [Mia] and will get off at [3]
 <==== Getting on Floor[1] is [Lisa] and will get off at [4]
 <==== Getting on Floor[2] is [Cal] and will get off at [5]
@@ -106,20 +122,31 @@
 <==== Getting on Floor[2] is [Don] and will get off at [1]
 ====> Exiting Floor[1] is [Don] with [0] temporary exits
 ====> Exiting Floor[1] is [Nora] with [1] temporary exits
+=ooo= Elevator is empty at floor [1]
 <==== Getting on Floor[1] is [Sam] and will get off at [5]
 ====> Exiting Floor[5] is [Sam] with [0] temporary exits
+=ooo= Elevator is empty at floor [5]
 <==== Getting on Floor[5] is [Liv] and will get off at [4]
 ====> Exiting Floor[4] is [Liv] with [0] temporary exits
+=ooo= Elevator is empty at floor [1]
+=ooo= Elevator is empty at floor [1]
 <==== Getting on Floor[1] is [Nina] and will get off at [3]
 ====> Exiting Floor[3] is [Nina] with [0] temporary exits
+=ooo= Elevator is empty at floor [5]
+=ooo= Elevator is empty at floor [5]
 <==== Getting on Floor[5] is [Mary] and will get off at [2]
 ====> Exiting Floor[2] is [Mary] with [0] temporary exits
+=ooo= Elevator is empty at floor [1]
+=ooo= Elevator is empty at floor [1]
 <==== Getting on Floor[1] is [Ed] and will get off at [2]
 ====> Exiting Floor[2] is [Ed] with [0] temporary exits
+=ooo= Elevator is empty at floor [2]
 <==== Getting on Floor[2] is [Tad] and will get off at [3]
 ====> Exiting Floor[3] is [Tad] with [0] temporary exits
+=ooo= Elevator is empty at floor [3]
 <==== Getting on Floor[3] is [Ali] and will get off at [4]
 ====> Exiting Floor[4] is [Ali] with [0] temporary exits
+=ooo= Elevator is empty at floor [4]
 <==== Getting on Floor[4] is [Sue] and will get off at [5]
 ====> Exiting Floor[5] is [Sue] with [0] temporary exits
 
@@ -136,8 +163,9 @@ End Elevator Simulation.
  * Floor 2 Total Requests: 6
  * Floor 3 Total Requests: 12
  * Floor 4 Total Requests: 9
- * Floor 5 Total Requests: 12
- * Total Riders: 49
- * Total Rides: 44
+ * Floor 5 Total Requests: 9
+ * Total Riders Seeking to Use Elevators: 49
+ * Total Riders Able to Use Elevators: 44
  * Total Riders Unable to Ride: 5
- * Total Times Elevator was Empty: 3
+ * Total Times Elevator was Empty: 18
+ * Total Temporary Exits: 20

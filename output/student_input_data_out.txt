@@ -154,9 +154,9 @@ End Elevator Simulation.
  * Floor 2 Total Requests: 11
  * Floor 3 Total Requests: 10
  * Floor 4 Total Requests: 10
- * Floor 5 Total Requests: 10
- * Total Riders: 49
- * Total Rides: 46
+ * Floor 5 Total Requests: 5
+ * Total Riders Seeking to Use Elevators: 49
+ * Total Riders Able to Use Elevators: 46
  * Total Riders Unable to Ride: 3
  * Total Times Elevator was Empty: 12
  * Total Temporary Exits: 15

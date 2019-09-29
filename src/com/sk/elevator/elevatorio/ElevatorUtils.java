@@ -148,7 +148,7 @@ public class ElevatorUtils {
                 } catch (IOException e) {
                     System.err.println(e.toString());
                 }
-                i++;    // Tracks number of people who wanted to exit at a floor and have been let off // TODO CHECK
+                i++;    // Tracks number of people who wanted to exit at a floor and have been let off
             } else {
                 // Track the number of temporary exits a rider has to make
                 person.setExitTracker(person.getExitTracker()+1);

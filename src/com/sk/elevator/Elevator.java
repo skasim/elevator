@@ -31,8 +31,6 @@ import static com.sk.elevator.person.Person.processPerson;
  * @author Samra Kasim
  */
 public class Elevator {
-    // TODO write a report
-    // TODO remove sys.out and put in sys.errors
     /**
      * Main class to enter the program. Input and output filepaths are provided as arguments in the command line.
      * The class reads each row of input text character by character. After conducting validation checks of each
@@ -89,11 +87,11 @@ public class Elevator {
 
             try {
                 writeFileLineByLine(outFile, "\nEnd Elevator Simulation.");
-                System.out.println(eMetrics.toString()); //TODO remove
                 writeFileLineByLine(outFile, "\n########################################\n");
                 writeFileLineByLine(outFile, "#             Metrics Report           #\n");
                 writeFileLineByLine(outFile, "########################################\n\n");
                 writeFileLineByLine(outFile, eMetrics.toString());
+                System.out.println("File processing complete.");
             } catch (IOException e) {
                 System.err.println(e.toString());
             }

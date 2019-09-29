@@ -83,7 +83,7 @@ public class FileUtils {
      * @param outFile: String value representing the output file
      * @return a BufferedWriter object
      */
-    public static BufferedWriter createWriter(File outFile) {
+    private static BufferedWriter createWriter(File outFile) {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(outFile, true));

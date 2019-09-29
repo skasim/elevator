@@ -4,7 +4,7 @@ import com.sk.elevator.person.Person;
 
 /**
  * Class to implement the LinkedListStack featuring Person as the data object. Object contains the key stack methods:
- * push, pop, peek, isEmpty and additional methods such as size, maxCapacity reached (i.e., size >= 5).
+ * push, pop, peek, isEmpty, and size.
  *
  * @author Samra Kasim
  */
