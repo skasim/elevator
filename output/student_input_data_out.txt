@@ -1,0 +1,270 @@
+
+########################################
+
+#    ABC Corp. Elevator Simulation.    #
+
+#    By: Samra Kasim                   #
+
+########################################
+
+
+
+LEGEND:
+<==== Rider getting on elevator 
+====> Rider getting off elevator 
+<===> Rider's temporary Exit 
+=xxx= Rider unable to get on because max capacity reached 
+=ooo= Elevator is empty
+
+ Begin Elevator Simulation.
+
+
+ Echo input: // Samra Kasim
+
+ Echo input: // Student generated data for Lab 1. Purposefully contains bad data to demonstrate error handling
+
+ Echo input: // Name Floor entered Floor exited
+
+ Echo input: Samra 1 4
+=ooo= Elevator is empty at floor [1]
+<==== Getting on Floor[1] is [Samra] and will get off at [4]
+
+ Echo input: Angel 1 5
+<==== Getting on Floor[1] is [Angel] and will get off at [5]
+
+ Echo input: Nigel 2 7
+
+ Echo input: Joan 2 4
+<==== Getting on Floor[2] is [Joan] and will get off at [4]
+
+ Echo input: Abbey 2 5
+<==== Getting on Floor[2] is [Abbey] and will get off at [5]
+
+ Echo input: Harsh 3 4
+<==== Getting on Floor[3] is [Harsh] and will get off at [4]
+
+ Echo input: badlygenerateddataheresomethingwentwrong
+
+ Echo input: Zahra 5 1
+====> Exiting Floor[4] is [Harsh] with [0] temporary exits
+<===> Temporarily Exiting Floor[4] is [Abbey]
+====> Exiting Floor[4] is [Joan] with [0] temporary exits
+<===> Temporarily Exiting Floor[4] is [Angel]
+====> Exiting Floor[4] is [Samra] with [0] temporary exits
+====> Exiting Floor[5] is [Abbey] with [1] temporary exits
+====> Exiting Floor[5] is [Angel] with [1] temporary exits
+=ooo= Elevator is empty at floor [5]
+<==== Getting on Floor[5] is [Zahra] and will get off at [1]
+
+ Echo input: Anu 5 2
+<==== Getting on Floor[5] is [Anu] and will get off at [2]
+
+ Echo input: Nadia 5 3
+<==== Getting on Floor[5] is [Nadia] and will get off at [3]
+
+ Echo input: Stacy 4 2
+<==== Getting on Floor[4] is [Stacy] and will get off at [2]
+
+ Echo input: Kevin 3 2
+<===> Temporarily Exiting Floor[3] is [Stacy]
+====> Exiting Floor[3] is [Nadia] with [0] temporary exits
+<==== Getting on Floor[3] is [Kevin] and will get off at [2]
+
+ Echo input: Patrick 2 1
+====> Exiting Floor[2] is [Kevin] with [0] temporary exits
+====> Exiting Floor[2] is [Stacy] with [1] temporary exits
+====> Exiting Floor[2] is [Anu] with [0] temporary exits
+<==== Getting on Floor[2] is [Patrick] and will get off at [1]
+
+ Echo input: Julia 1 2
+====> Exiting Floor[1] is [Patrick] with [0] temporary exits
+====> Exiting Floor[1] is [Zahra] with [0] temporary exits
+=ooo= Elevator is empty at floor [1]
+<==== Getting on Floor[1] is [Julia] and will get off at [2]
+
+ Echo input: Al 2 3
+====> Exiting Floor[2] is [Julia] with [0] temporary exits
+=ooo= Elevator is empty at floor [2]
+<==== Getting on Floor[2] is [Al] and will get off at [3]
+
+ Echo input: Abe 2 4
+<==== Getting on Floor[2] is [Abe] and will get off at [4]
+
+ Echo input: Kishiyama 2 3
+<==== Getting on Floor[2] is [Kishiyama] and will get off at [3]
+
+ Echo input: Ben 2 3
+<==== Getting on Floor[2] is [Ben] and will get off at [3]
+
+ Echo input: Joesphine 2 4
+<==== Getting on Floor[2] is [Joesphine] and will get off at [4]
+
+ Echo input: Nina 3 4
+<===> Temporarily Exiting Floor[3] is [Joesphine]
+====> Exiting Floor[3] is [Ben] with [0] temporary exits
+====> Exiting Floor[3] is [Kishiyama] with [0] temporary exits
+<===> Temporarily Exiting Floor[3] is [Abe]
+====> Exiting Floor[3] is [Al] with [0] temporary exits
+<==== Getting on Floor[3] is [Nina] and will get off at [4]
+
+ Echo input: Charles 3 2
+<==== Getting on Floor[3] is [Charles] and will get off at [2]
+
+ Echo input: Arlene 3 1
+<==== Getting on Floor[3] is [Arlene] and will get off at [1]
+
+ Echo input: Ethel 4 5
+<===> Temporarily Exiting Floor[4] is [Arlene]
+<===> Temporarily Exiting Floor[4] is [Charles]
+====> Exiting Floor[4] is [Nina] with [0] temporary exits
+====> Exiting Floor[4] is [Joesphine] with [1] temporary exits
+====> Exiting Floor[4] is [Abe] with [1] temporary exits
+<==== Getting on Floor[4] is [Ethel] and will get off at [5]
+
+ Echo input: Simon 5 1
+====> Exiting Floor[5] is [Ethel] with [0] temporary exits
+<==== Getting on Floor[5] is [Simon] and will get off at [1]
+
+ Echo input: Joe 5 2
+<==== Getting on Floor[5] is [Joe] and will get off at [2]
+
+ Echo input: Krabby 4 3
+<==== Getting on Floor[4] is [Krabby] and will get off at [3]
+
+ Echo input: Spongebob 4 2
+=xxx= Elevator at max capacity! [Spongebob] was not able to get on at floor [4]
+
+ Echo input: Vers 3 2
+====> Exiting Floor[3] is [Krabby] with [0] temporary exits
+<==== Getting on Floor[3] is [Vers] and will get off at [2]
+
+ Echo input: Bart 3 5
+=xxx= Elevator at max capacity! [Bart] was not able to get on at floor [3]
+
+ Echo input: Cindy 3 1
+=xxx= Elevator at max capacity! [Cindy] was not able to get on at floor [3]
+
+ Echo input: Sherman 2 1
+====> Exiting Floor[2] is [Vers] with [0] temporary exits
+====> Exiting Floor[2] is [Joe] with [0] temporary exits
+<===> Temporarily Exiting Floor[2] is [Simon]
+<===> Temporarily Exiting Floor[2] is [Arlene]
+====> Exiting Floor[2] is [Charles] with [1] temporary exits
+<==== Getting on Floor[2] is [Sherman] and will get off at [1]
+
+ Echo input: Bob 1 5
+====> Exiting Floor[1] is [Sherman] with [0] temporary exits
+====> Exiting Floor[1] is [Simon] with [1] temporary exits
+====> Exiting Floor[1] is [Arlene] with [2] temporary exits
+=ooo= Elevator is empty at floor [1]
+<==== Getting on Floor[1] is [Bob] and will get off at [5]
+
+ Echo input: Natasha 1 4
+<==== Getting on Floor[1] is [Natasha] and will get off at [4]
+
+ Echo input: Suriya 2 3
+<==== Getting on Floor[2] is [Suriya] and will get off at [3]
+
+ Echo input: La 2 4
+<==== Getting on Floor[2] is [La] and will get off at [4]
+
+ Echo input: Melanie 3 4
+<===> Temporarily Exiting Floor[3] is [La]
+====> Exiting Floor[3] is [Suriya] with [0] temporary exits
+<==== Getting on Floor[3] is [Melanie] and will get off at [4]
+
+ Echo input: Mike 4 3
+====> Exiting Floor[4] is [Melanie] with [0] temporary exits
+====> Exiting Floor[4] is [La] with [1] temporary exits
+====> Exiting Floor[4] is [Natasha] with [0] temporary exits
+<==== Getting on Floor[4] is [Mike] and will get off at [3]
+
+ Echo input: Clint 2 1
+<===> Temporarily Exiting Floor[5] is [Mike]
+====> Exiting Floor[5] is [Bob] with [0] temporary exits
+====> Exiting Floor[3] is [Mike] with [1] temporary exits
+=ooo= Elevator is empty at floor [2]
+=ooo= Elevator is empty at floor [2]
+<==== Getting on Floor[2] is [Clint] and will get off at [1]
+
+ Echo input: Alex 1 2
+====> Exiting Floor[1] is [Clint] with [0] temporary exits
+=ooo= Elevator is empty at floor [1]
+<==== Getting on Floor[1] is [Alex] and will get off at [2]
+
+ Echo input: Genevieve 2 3
+====> Exiting Floor[2] is [Alex] with [0] temporary exits
+=ooo= Elevator is empty at floor [2]
+<==== Getting on Floor[2] is [Genevieve] and will get off at [3]
+
+ Echo input: Sam 2 3
+<==== Getting on Floor[2] is [Sam] and will get off at [3]
+
+ Echo input: Fern 2 4
+<==== Getting on Floor[2] is [Fern] and will get off at [4]
+
+ Echo input: Lilly 3 5
+<===> Temporarily Exiting Floor[3] is [Fern]
+====> Exiting Floor[3] is [Sam] with [0] temporary exits
+====> Exiting Floor[3] is [Genevieve] with [0] temporary exits
+<==== Getting on Floor[3] is [Lilly] and will get off at [5]
+
+ Echo input: Runa 5 1
+<===> Temporarily Exiting Floor[4] is [Lilly]
+====> Exiting Floor[4] is [Fern] with [1] temporary exits
+====> Exiting Floor[5] is [Lilly] with [1] temporary exits
+=ooo= Elevator is empty at floor [5]
+<==== Getting on Floor[5] is [Runa] and will get off at [1]
+
+ Echo input: Kathy 4 3
+<==== Getting on Floor[4] is [Kathy] and will get off at [3]
+
+ Echo input: Sally 4 2
+<==== Getting on Floor[4] is [Sally] and will get off at [2]
+
+ Echo input: Leila 5 2
+<===> Temporarily Exiting Floor[3] is [Sally]
+====> Exiting Floor[3] is [Kathy] with [0] temporary exits
+====> Exiting Floor[2] is [Sally] with [1] temporary exits
+====> Exiting Floor[1] is [Runa] with [0] temporary exits
+=ooo= Elevator is empty at floor [5]
+=ooo= Elevator is empty at floor [5]
+<==== Getting on Floor[5] is [Leila] and will get off at [2]
+
+ Echo input: Lal 3 2
+<==== Getting on Floor[3] is [Lal] and will get off at [2]
+
+ Echo input: Anne 3 1
+<==== Getting on Floor[3] is [Anne] and will get off at [1]
+
+ Echo input: Leon 2 1
+<===> Temporarily Exiting Floor[2] is [Anne]
+====> Exiting Floor[2] is [Lal] with [0] temporary exits
+====> Exiting Floor[2] is [Leila] with [0] temporary exits
+<==== Getting on Floor[2] is [Leon] and will get off at [1]
+
+ Echo input: Rob 2 1
+<==== Getting on Floor[2] is [Rob] and will get off at [1]
+====> Exiting Floor[1] is [Rob] with [0] temporary exits
+====> Exiting Floor[1] is [Leon] with [0] temporary exits
+====> Exiting Floor[1] is [Anne] with [1] temporary exits
+
+End Elevator Simulation.
+
+########################################
+
+#             Metrics Report           #
+
+########################################
+
+
+ * Floor 1 Total Requests: 10
+ * Floor 2 Total Requests: 11
+ * Floor 3 Total Requests: 10
+ * Floor 4 Total Requests: 10
+ * Floor 5 Total Requests: 5
+ * Total Riders Seeking to Use Elevators: 49
+ * Total Riders Able to Use Elevators: 46
+ * Total Riders Unable to Ride: 3
+ * Total Times Elevator was Empty: 12
+ * Total Temporary Exits: 15
